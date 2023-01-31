@@ -14,6 +14,7 @@
     grid-area: h;
     background-color: darkblue;
 }
+
 .header img {
     width: 50px;
 }
@@ -25,5 +26,5 @@
 
 .content {
     grid-area: c;
-    background-color:#edeaf8 ;
+    background-color: #edeaf8;
 }
