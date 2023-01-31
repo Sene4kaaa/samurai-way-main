@@ -1,0 +1,8 @@
+.content {
+    grid-area: c;
+    background-color: #edeaf8;
+}
+
+.item {
+    color: deeppink;
+}
