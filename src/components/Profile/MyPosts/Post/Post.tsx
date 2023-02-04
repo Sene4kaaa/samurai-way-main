@@ -6,13 +6,13 @@ type PostPropsType = {
     likeCounts:number
 }
 
-const Post = (props: PostPropsType) => {
+const Post: React.FC<PostPropsType> = (props) => {
     return (
         <div className={s.item}>
             <img src={'https://w7.pngwing.com/pngs/862/646/png-transparent-beard-hipster-male-man-avatars-xmas-giveaway-icon-thumbnail.png'}/>
             {props.message}
             <div>
-                <span>{props.likeCounts}</span>
+                <span>like </span>{props.likeCounts}
             </div>
         </div>
     )
