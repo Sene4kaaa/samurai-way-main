@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,13 +11,13 @@ import Settings from "./components/Settings/Settings";
 import {RootStateType} from "./redux/state";
 
 
-
-
-type AppPropsType={
+type AppPropsType = {
     state: RootStateType
+    addPost: (postMessage: string) => void
+
 }
 
-const App:FC<AppPropsType> = ({state}) => {
+const App = (props: AppPropsType) => {
 
     return (
         <BrowserRouter>
@@ -25,11 +25,12 @@ const App:FC<AppPropsType> = ({state}) => {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/profile'} render={()=> <Profile profilePage={state.profilePage}/>}/>
-                    <Route path={'/dialogs'} render={()=> <Dialogs dialogPage={state.dialogPage}/>}/>
-                    <Route path={'/news'} render={()=> <News/>}/>
-                    <Route path={'/music'} render={()=> <Music/>}/>
-                    <Route path={'/settings'} render={()=> <Settings/>}/>
+                    <Route path={'/profile'}
+                           render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs dialogPage={props.state.dialogPage}/>}/>
+                    <Route path={'/news'} render={() => <News/>}/>
+                    <Route path={'/music'} render={() => <Music/>}/>
+                    <Route path={'/settings'} render={() => <Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>

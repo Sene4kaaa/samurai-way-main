@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 export type MessagesType = {
     id: number
     message: string
@@ -58,6 +60,16 @@ const state: RootStateType = {
         ]
     },
     sidebar: {}
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostType = {
+        id: new Date().getTime(),
+        message: postMessage,
+        likesCounts: 0
+    };
+    state.profilePage.posts.push(newPost);
+    renderEntireTree(state);
 }
 
 export default state;
