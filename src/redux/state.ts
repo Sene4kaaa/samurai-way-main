@@ -8,14 +8,8 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type  AddPostActionActionType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
-type  ChangeNewTextActionType = {
-    type: 'CHANGE-NEW-TEXT'
-    newText: string
-}
+type  AddPostActionActionType = ReturnType<typeof addPostActionCreator>
+type  ChangeNewTextActionType = ReturnType<typeof changeNewTextActionCreator>
 
 export type ActionsTypes = AddPostActionActionType | ChangeNewTextActionType
 
@@ -88,6 +82,19 @@ export const store: StoreType = {
             this._renderEntireTree();
         }
     }
+}
+
+export const addPostActionCreator = (postMessage: string) => {
+    return {
+        type: "ADD-POST",
+        postMessage: postMessage
+    } as const
+}
+export const changeNewTextActionCreator = (newText: string) => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
 }
 
 
