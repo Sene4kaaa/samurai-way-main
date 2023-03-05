@@ -1,10 +1,67 @@
-let renderEntireTree = () => {
-    console.log('hello')
+export type StoreType = {
+    _state: RootStateType
+    changeNewText: (newText: string) => void
+    addPost: (postMessage: string) => void
+    _renderEntireTree: () => void
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
 }
 
-export const subscribe = (callback: () => void) => {
-    renderEntireTree = callback
+export const store: StoreType = {
+    _state: {
+        profilePage: {
+            messageForNewPost: 'Hello Andrew',
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likesCounts: 12},
+                {id: 2, message: 'it\'s my first post', likesCounts: 11},
+                {id: 3, message: 'BlaBla', likesCounts: 15},
+                {id: 4, message: 'Dada', likesCounts: 20},
+            ]
+        },
+        dialogPage: {
+            dialogs: [
+                {id: 1, name: 'Matwei'},
+                {id: 2, name: 'Katy'},
+                {id: 3, name: 'Andrew'},
+                {id: 4, name: 'Lilia'},
+                {id: 5, name: 'Anatoliy'},
+                {id: 6, name: 'Pawel'},
+            ],
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How is your it-kamasutra?'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+            ]
+        },
+        sidebar: {}
+    },
+    changeNewText(newText: string) {
+        this._state.profilePage.messageForNewPost = newText;
+        this._renderEntireTree();
+    },
+    addPost(postMessage: string) {
+        const newPost: PostType = {
+            id: new Date().getTime(),
+            message: postMessage,
+            likesCounts: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.messageForNewPost = '';
+        this._renderEntireTree();
+    },
+    _renderEntireTree() {
+        console.log('state changed')
+    },
+    subscribe(callback) {
+        this._renderEntireTree = callback
+    },
+    getState() {
+        return this._state
+    }
 }
+
 
 export type MessagesType = {
     id: number
@@ -40,50 +97,3 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-const state: RootStateType = {
-    profilePage: {
-        messageForNewPost: 'Hello Andrew',
-        posts: [
-            {id: 1, message: 'Hi, how are you?', likesCounts: 12},
-            {id: 2, message: 'it\'s my first post', likesCounts: 11},
-            {id: 3, message: 'BlaBla', likesCounts: 15},
-            {id: 4, message: 'Dada', likesCounts: 20},
-        ]
-    },
-    dialogPage: {
-        dialogs: [
-            {id: 1, name: 'Matwei'},
-            {id: 2, name: 'Katy'},
-            {id: 3, name: 'Andrew'},
-            {id: 4, name: 'Lilia'},
-            {id: 5, name: 'Anatoliy'},
-            {id: 6, name: 'Pawel'},
-        ],
-        messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'How is your it-kamasutra?'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-        ]
-    },
-    sidebar: {}
-}
-
-export const addPost = (postMessage: string) => {
-    const newPost: PostType = {
-        id: new Date().getTime(),
-        message: postMessage,
-        likesCounts: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.messageForNewPost = '';
-    renderEntireTree();
-}
-
-export const changeNewText = (newText: string) => {
-    state.profilePage.messageForNewPost = newText;
-    renderEntireTree();
-}
-
-export default state;
