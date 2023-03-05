@@ -9,8 +9,7 @@ export type StoreType = {
 }
 
 
-
-export type ActionsTypes =  ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator>
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator> | ReturnType<typeof updateNewMessageCreatorCreator> | ReturnType<typeof sendMessageCreator>
 
 
 export const store: StoreType = {
@@ -38,8 +37,9 @@ export const store: StoreType = {
                 {id: 2, message: 'How is your it-kamasutra?'},
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
-                {id: 4, message: 'Yo'},
-            ]
+                {id: 5, message: 'Yo'},
+            ],
+            newMessageBody: ''
         },
         sidebar: {}
     },
@@ -79,6 +79,14 @@ export const store: StoreType = {
         } else if (action.type === 'CHANGE-NEW-TEXT') {
             this._state.profilePage.messageForNewPost = action.newText;
             this._renderEntireTree();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE_BODY') {
+            this._state.dialogPage.newMessageBody = action.body
+            this._renderEntireTree();
+        } else if (action.type === 'SEND_MESSAGE') {
+            let body = this._state.dialogPage.newMessageBody
+            this._state.dialogPage.newMessageBody = ''
+            this._state.dialogPage.messages.push({id: 6, message: body})
+            this._renderEntireTree();
         }
     }
 }
@@ -93,6 +101,17 @@ export const changeNewTextActionCreator = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+export const updateNewMessageCreatorCreator = (body: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE_BODY',
+        body: body
+    } as const
+}
+export const sendMessageCreator = () => {
+    return {
+        type: 'SEND_MESSAGE',
     } as const
 }
 
@@ -121,6 +140,8 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
+
 }
 
 type SidebarType = {}
