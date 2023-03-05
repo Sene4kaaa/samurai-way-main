@@ -8,10 +8,9 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type  AddPostActionActionType = ReturnType<typeof addPostActionCreator>
-type  ChangeNewTextActionType = ReturnType<typeof changeNewTextActionCreator>
 
-export type ActionsTypes = AddPostActionActionType | ChangeNewTextActionType
+
+export type ActionsTypes =  ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator>
 
 
 export const store: StoreType = {
