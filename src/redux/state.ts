@@ -1,3 +1,7 @@
+import profileReducer, {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 export type StoreType = {
     _state: RootStateType
     changeNewText: (newText: string) => void
@@ -67,53 +71,18 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.postMessage,
-                likesCounts: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.messageForNewPost = '';
-            this._renderEntireTree();
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.messageForNewPost = action.newText;
-            this._renderEntireTree();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE_BODY') {
-            this._state.dialogPage.newMessageBody = action.body
-            this._renderEntireTree();
-        } else if (action.type === 'SEND_MESSAGE') {
-            let body = this._state.dialogPage.newMessageBody
-            this._state.dialogPage.newMessageBody = ''
-            this._state.dialogPage.messages.push({id: 6, message: body})
-            this._renderEntireTree();
-        }
+
+       this._state.profilePage = profileReducer(this._state.profilePage,action)
+       this._state.dialogPage = dialogsReducer(this._state.dialogPage,action)
+       this._state.sidebar = sidebarReducer(this._state.sidebar,action)
+
+        this._renderEntireTree();
+
     }
 }
 
-export const addPostActionCreator = (postMessage: string) => {
-    return {
-        type: "ADD-POST",
-        postMessage: postMessage
-    } as const
-}
-export const changeNewTextActionCreator = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
-export const updateNewMessageCreatorCreator = (body: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE_BODY',
-        body: body
-    } as const
-}
-export const sendMessageCreator = () => {
-    return {
-        type: 'SEND_MESSAGE',
-    } as const
-}
+
+
 
 
 export type MessagesType = {
@@ -144,7 +113,7 @@ export type DialogPageType = {
 
 }
 
-type SidebarType = {}
+export type SidebarType = {}
 
 export type RootStateType = {
     profilePage: ProfilePageType
