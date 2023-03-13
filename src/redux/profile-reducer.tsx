@@ -1,6 +1,16 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./state";
+import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
-const profileReducer = (store: ProfilePageType, action: ActionsTypes) => {
+let initialState: ProfilePageType = {
+    messageForNewPost: 'Hello Andrew',
+    posts: [
+        {id: 1, message: 'Hi, how are you?', likesCounts: 12},
+        {id: 2, message: 'it\'s my first post', likesCounts: 11},
+        {id: 3, message: 'BlaBla', likesCounts: 15},
+        {id: 4, message: 'Dada', likesCounts: 20},
+    ]
+}
+
+const profileReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
@@ -8,14 +18,14 @@ const profileReducer = (store: ProfilePageType, action: ActionsTypes) => {
                 message: action.postMessage,
                 likesCounts: 0
             };
-            store.posts.push(newPost);
-            store.messageForNewPost = '';
-            return store
+            state.posts.push(newPost);
+            state.messageForNewPost = '';
+            return state
         case 'CHANGE-NEW-TEXT':
-            store.messageForNewPost = action.newText;
-            return store
+            state.messageForNewPost = action.newText;
+            return state
         default:
-            return store
+            return state
     }
 
 }
