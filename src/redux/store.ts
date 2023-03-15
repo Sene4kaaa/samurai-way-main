@@ -16,7 +16,6 @@ export type StoreType = {
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator> | ReturnType<typeof updateNewMessageCreatorCreator> | ReturnType<typeof sendMessageCreator>
 
 
-/*
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -81,7 +80,6 @@ export const store: StoreType = {
 
     }
 }
-*/
 
 
 

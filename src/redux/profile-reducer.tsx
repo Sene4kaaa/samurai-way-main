@@ -11,11 +11,12 @@ let initialState: ProfilePageType = {
 }
 
 const profileReducer = (state = initialState, action: ActionsTypes) => {
+    debugger
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: action.postMessage,
+                message: state.messageForNewPost,
                 likesCounts: 0
             };
             state.posts.push(newPost);
@@ -30,13 +31,13 @@ const profileReducer = (state = initialState, action: ActionsTypes) => {
 
 }
 
-export const addPostActionCreator = (postMessage: string) => {
+export const addPostActionCreator = () => {
     return {
         type: "ADD-POST",
-        postMessage: postMessage
     } as const
 }
 export const changeNewTextActionCreator = (newText: string) => {
+    debugger
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
