@@ -1,21 +1,24 @@
-import profileReducer, {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
-import dialogsReducer, {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+// import profileReducer, {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
+// import dialogsReducer, {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
+// import sidebarReducer from "./sidebar-reducer";
 
-export type StoreType = {
-    _state: RootStateType
-    changeNewText: (newText: string) => void
-    addPost: (postMessage: string) => void
-    _renderEntireTree: () => void
-    subscribe: (callback: () => void) => void
-    getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
-}
+// export type StoreType = {
+//     _state: RootStateType
+//     changeNewText: (newText: string) => void
+//     addPost: (postMessage: string) => void
+//     _renderEntireTree: () => void
+//     subscribe: (callback: () => void) => void
+//     getState: () => RootStateType
+//     dispatch: (action: ActionsTypes) => void
+// }
 
+
+import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
+import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
 
 export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator> | ReturnType<typeof updateNewMessageCreatorCreator> | ReturnType<typeof sendMessageCreator>
 
-
+/*
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -79,7 +82,7 @@ export const store: StoreType = {
         this._renderEntireTree();
 
     }
-}
+}*/
 
 
 

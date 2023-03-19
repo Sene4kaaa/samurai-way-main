@@ -19,7 +19,7 @@ let initialState: DialogPageType = {
     newMessageBody: ''
 }
 
-const dialogsReducer = (state = initialState, action: ActionsTypes) => {
+export const dialogsReducer = (state = initialState, action: ActionsTypes) : DialogPageType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE_BODY':
             state.newMessageBody = action.body
@@ -46,5 +46,3 @@ export const sendMessageCreator = () => {
         type: 'SEND_MESSAGE',
     } as const
 }
-
-export default dialogsReducer;
