@@ -10,7 +10,7 @@ let initialState: ProfilePageType = {
     ]
 }
 
-export const profileReducer = (state = initialState, action: ActionsTypes) : ProfilePageType => {
+export const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageType => {
     debugger
     switch (action.type) {
         case 'ADD-POST':
@@ -21,8 +21,8 @@ export const profileReducer = (state = initialState, action: ActionsTypes) : Pro
             };
             return {
                 ...state,
-                posts: [...state.posts,newPost],
-                messageForNewPost : ''
+                posts: [...state.posts, newPost],
+                messageForNewPost: ''
             }
         case 'CHANGE-NEW-TEXT':
             return {

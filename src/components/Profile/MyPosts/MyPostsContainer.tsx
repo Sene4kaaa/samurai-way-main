@@ -5,10 +5,6 @@ import {AppStateType, DispatchType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 
 
-
-
-
-
 const mapStateToProps = (state: AppStateType) => {
     return {
         messageForNewPost: state.profilePage.messageForNewPost,
@@ -19,7 +15,7 @@ const mapStateToProps = (state: AppStateType) => {
 const mapDispatchToProps = (dispatch: DispatchType) => {
     return {
         addPost: () => {
-           dispatch(addPostActionCreator())
+            dispatch(addPostActionCreator())
         },
         newTextChangeHandler: (value: string) => {
             dispatch(changeNewTextActionCreator(value))
@@ -28,4 +24,4 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
 }
 
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

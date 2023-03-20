@@ -4,14 +4,11 @@ import {dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
 
-
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogsReducer,
     sidebar: sidebarReducer
 })
-
-
 
 
 export const store = createStore(rootReducer);

@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import {AppStateType, DispatchType} from "../../redux/redux-store";
 
 
-
 const mapStateToProps = (state: AppStateType) => {
     return {
         dialogPage: state.dialogPage
@@ -24,6 +23,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
 }
 
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 
