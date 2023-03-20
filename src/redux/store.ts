@@ -15,8 +15,16 @@
 
 import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
 import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof changeNewTextActionCreator> | ReturnType<typeof updateNewMessageCreatorCreator> | ReturnType<typeof sendMessageCreator>
+export type ActionsTypes =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof changeNewTextActionCreator>
+    | ReturnType<typeof updateNewMessageCreatorCreator>
+    | ReturnType<typeof sendMessageCreator>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 /*
 export const store: StoreType = {
@@ -84,43 +92,57 @@ export const store: StoreType = {
     }
 }*/
 
+// type UsersPageType = {
+//     users: UsersType[]
+// }
+//  type UsersType = {
+//     id: number
+//     photoUrl: string
+//     followed: boolean
+//     fullName: string
+//     status: string
+//     location: UserLocationType
+// }
+
+// type UserLocationType = {
+//     city: string
+//     country: string
+// }
 
 
+//  type MessagesType = {
+//     id: number
+//     message: string
+// }
 
+//  type DialogsType = {
+//     id: number
+//     name: string
+// }
+//
+//  type PostType = {
+//     id: number
+//     message: string
+//     likesCounts: number
+// }
+//
+//  type ProfilePageType = {
+//     messageForNewPost: string
+//     posts: Array<PostType>
+// }
 
-export type MessagesType = {
-    id: number
-    message: string
-}
+// export type DialogPageType = {
+//     dialogs: Array<DialogsType>
+//     messages: Array<MessagesType>
+//     newMessageBody: string
+//
+// }
 
-export type DialogsType = {
-    id: number
-    name: string
-}
+// type SidebarType = {}
 
-export type PostType = {
-    id: number
-    message: string
-    likesCounts: number
-}
-
-export type ProfilePageType = {
-    messageForNewPost: string
-    posts: Array<PostType>
-}
-
-export type DialogPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-    newMessageBody: string
-
-}
-
-export type SidebarType = {}
-
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogPage: DialogPageType
-    sidebar: SidebarType
-}
+// export type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogPage: DialogPageType
+//     sidebar: SidebarType
+// }
 

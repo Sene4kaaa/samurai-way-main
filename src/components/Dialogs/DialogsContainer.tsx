@@ -1,8 +1,8 @@
 import React from 'react';
-import {sendMessageCreator, updateNewMessageCreatorCreator} from "../../redux/dialogs-reducer";
-import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
+import {Dialogs} from "./Dialogs";
 import {AppStateType, DispatchType} from "../../redux/redux-store";
+import {sendMessageCreator, updateNewMessageCreatorCreator} from '../../redux/dialogs-reducer';
 
 
 const mapStateToProps = (state: AppStateType) => {
