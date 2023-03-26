@@ -1,17 +1,28 @@
 import {ActionsTypes} from "./store";
 
-type UserLocationType = {
-    city: string
-    country: string
+// type UserLocationType = {
+//     city: string
+//     country: string
+// }
+
+type PhotosType = {
+    small: string
+    large: string
 }
 
 export type UserType = {
-    id: number
-    photoUrl: string
     followed: boolean
-    fullName: string
+    id: number
+    name: string
+    photos: PhotosType
     status: string
-    location: UserLocationType
+    uniqueUrlName: string
+    // id: number
+    // photoUrl: string
+    // followed: boolean
+    // name: string
+    // status: string
+    // location: UserLocationType
 }
 
 let initialState: InitialStateType = {
@@ -22,7 +33,7 @@ export type InitialStateType = {
     users: UserType[]
 }
 
-export const usersReducer = (state: InitialStateType  = initialState, action: ActionsTypes): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW' :
             return {
