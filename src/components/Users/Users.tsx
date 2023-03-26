@@ -6,23 +6,13 @@ import UserAvatar from '../../assets/images/UserAvatar.png'
 
 export class Users extends React.Component <UsersPropsType> {
 
-    getUsers() {
-
-        if (this.props.usersPage.users.length === 0) {
-
-            axios
-                .get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                })
-        }
-    }
-
-
     componentDidMount() {
-        this.getUsers()
+        axios
+            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
     }
-
 
     render() {
         return <div>
