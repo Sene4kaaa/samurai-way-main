@@ -17,12 +17,7 @@ export type UserType = {
     photos: PhotosType
     status: string
     uniqueUrlName: string
-    // id: number
-    // photoUrl: string
-    // followed: boolean
-    // name: string
-    // status: string
-    // location: UserLocationType
+
 }
 
 let initialState: InitialStateType = {
