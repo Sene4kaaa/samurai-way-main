@@ -6,6 +6,7 @@ import {ActionsTypes} from "./store";
 //     country: string
 // }
 
+
 type PhotosType = {
     small: string
     large: string
