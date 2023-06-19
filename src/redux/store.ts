@@ -15,7 +15,7 @@
 
 import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
 import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
@@ -25,6 +25,8 @@ export type ActionsTypes =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
 
 /*
 export const store: StoreType = {

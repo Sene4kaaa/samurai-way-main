@@ -1,12 +1,6 @@
 import {ActionsTypes} from "./store";
 
 
-// type UserLocationType = {
-//     city: string
-//     country: string
-// }
-
-
 type PhotosType = {
     small: string
     large: string
@@ -23,11 +17,17 @@ export type UserType = {
 }
 
 let initialState: InitialStateType = {
-    users: []
+    users: [],
+    pageSize: 7,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 export type InitialStateType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -56,7 +56,16 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 
         case 'SET_USERS' :
             return {
-                ...state, users: [...state.users, ...action.users]
+                ...state, users: action.users
+            }
+
+        case 'SET_CURRENT_PAGE' :
+            return {
+                ...state, currentPage: action.currentPage
+            }
+        case 'SET_TOTAL_USERS_COUNT' :
+            return {
+                ...state, totalUsersCount: action.totalUserCount
             }
         default:
             return state
@@ -76,6 +85,7 @@ export const unfollowAC = (userId: number) => {
         userId: userId
     } as const
 }
+
 export const setUsersAC = (users: UserType[]) => {
     return {
         type: 'SET_USERS',
@@ -83,3 +93,16 @@ export const setUsersAC = (users: UserType[]) => {
     } as const
 }
 
+export const setCurrentPageAC = (currentPage: number) => {
+    return {
+        type: 'SET_CURRENT_PAGE',
+        currentPage
+    } as const
+}
+
+export const setTotalUsersCountAC = (totalUserCount: number) => {
+    return {
+        type: 'SET_TOTAL_USERS_COUNT',
+        totalUserCount
+    } as const
+}

@@ -6,7 +6,7 @@ const ProfileInfo = () => {
     return (
         <div>
             <div>
-                <img src={'https://look.com.ua/pic/202010/640x480/look.com.ua-362136.jpg'}/>
+                <img src={'https://ic.pics.livejournal.com/usolt/5104380/764394/764394_original.jpg'}/>
             </div>
             <div className={s.descriptionBloch}>
                 ava + description
