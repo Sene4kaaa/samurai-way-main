@@ -1,11 +1,35 @@
 import {ActionsTypes} from "./store";
 
+
 export type PostType = {
     id: number
     message: string
     likesCounts: number
 }
+export type ProfileType = {
+    aboutMe: string,
+    contacts: ProfileContactsPropsType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullNam: string,
+    userId: number,
+    photos: ProfilePhotosPropsType
+}
 
+export type ProfileContactsPropsType = {
+    facebook: string,
+    website: null,
+    vk: string,
+    twitter: string,
+    instagram: string,
+    youtube: null,
+    github: string,
+    mainLink: null
+}
+export type ProfilePhotosPropsType = {
+    small: string,
+    large: string
+}
 export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
@@ -19,12 +43,13 @@ const initialState = {
         {id: 2, message: 'it\'s my first post', likesCounts: 11},
         {id: 3, message: 'BlaBla', likesCounts: 15},
         {id: 4, message: 'Dada', likesCounts: 20},
-    ] as PostType[]
+    ] as PostType[],
+    profile: null as null | ProfileType
 }
 
 export type initialStateType = typeof initialState
 
-export const profileReducer = (state:initialStateType = initialState, action: ActionsTypes): initialStateType => {
+export const profileReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {
@@ -42,6 +67,11 @@ export const profileReducer = (state:initialStateType = initialState, action: Ac
                 ...state,
                 messageForNewPost: action.newText
             }
+        case 'SET_USER_PROFILE':
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state
     }
@@ -58,6 +88,13 @@ export const changeNewTextActionCreator = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+export const setUserProfile = (profile: any) => {
+    debugger
+    return {
+        type: "SET_USER_PROFILE",
+        profile
     } as const
 }
 
