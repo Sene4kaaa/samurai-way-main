@@ -84,14 +84,12 @@ export const addPostActionCreator = () => {
     } as const
 }
 export const changeNewTextActionCreator = (newText: string) => {
-    debugger
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
     } as const
 }
 export const setUserProfile = (profile: any) => {
-    debugger
     return {
         type: "SET_USER_PROFILE",
         profile
