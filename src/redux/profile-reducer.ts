@@ -89,7 +89,7 @@ export const changeNewTextActionCreator = (newText: string) => {
         newText: newText
     } as const
 }
-export const setUserProfile = (profile: any) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {
         type: "SET_USER_PROFILE",
         profile
