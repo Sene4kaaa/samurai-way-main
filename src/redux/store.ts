@@ -16,12 +16,12 @@
 import {addPostActionCreator, changeNewTextActionCreator} from "./profile-reducer";
 import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow
 } from "./users-reducer";
 
 export type ActionsTypes =
@@ -29,12 +29,12 @@ export type ActionsTypes =
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof updateNewMessageCreatorCreator>
     | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
 
 /*
 export const store: StoreType = {
