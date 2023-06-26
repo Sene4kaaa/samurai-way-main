@@ -23,6 +23,7 @@ import {
     toggleIsFetching,
     unfollow
 } from "./users-reducer";
+import {setAuthUserData} from "./auth-reducer";
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
@@ -36,6 +37,7 @@ export type ActionsTypes =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof setAuthUserData>
 
 /*
 export const store: StoreType = {
