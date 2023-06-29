@@ -21,6 +21,7 @@ type MapStatePropsType = {
     isFetching: boolean
 }
 
+
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
