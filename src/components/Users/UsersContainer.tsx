@@ -80,10 +80,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export const UsersContainer = connect(mapStateToProps, {
     follow,
     unfollow,
-    // setUsers,
     setCurrentPage,
-    // setTotalUsersCount,
-    // toggleIsFetching,
     toggleFollowingInProgress,
     getUsersThunkCreator
 })(UsersContainerAPI)
