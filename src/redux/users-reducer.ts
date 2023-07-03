@@ -1,4 +1,6 @@
 import {ActionsTypes} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 
 type PhotosType = {
@@ -134,4 +136,17 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
         type: 'TOOGLE_IS_FOLLOWING_PROGRESS',
         isFetching, userId
     } as const
+}
+
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
 }

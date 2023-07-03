@@ -2,8 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {
     follow,
-    setCurrentPage, setTotalUsersCount,
-    setUsers, toggleFollowingInProgress, toggleIsFetching,
+    getUsersThunkCreator,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleFollowingInProgress,
+    toggleIsFetching,
     unfollow,
     UserType
 } from "../../redux/users-reducer";
@@ -31,6 +35,7 @@ type MapDispatchToPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
 
 export type UsersAPIPropsType = MapStatePropsType & MapDispatchToPropsType
@@ -38,14 +43,7 @@ export type UsersAPIPropsType = MapStatePropsType & MapDispatchToPropsType
 class UsersContainerAPI extends React.Component<UsersAPIPropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -85,7 +83,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         currentPage: state.users.currentPage,
         isFetching: state.users.isFetching,
         followingInProgress: state.users.followingInProgress
-
     }
 }
 
@@ -97,5 +94,6 @@ export const UsersContainer = connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
-    toggleFollowingInProgress
+    toggleFollowingInProgress,
+    getUsersThunkCreator
 })(UsersContainerAPI)

@@ -20,6 +20,7 @@ type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
 
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = []
