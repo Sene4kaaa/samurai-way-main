@@ -3,8 +3,6 @@ import styles from "./users.module.css";
 import UserAvatar from "../../assets/images/UserAvatar.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 
 type UsersPropsType = {
