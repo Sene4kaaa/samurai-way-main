@@ -16,12 +16,12 @@
 import {addPostActionCreator, changeNewTextActionCreator, setUserProfile} from "./profile-reducer";
 import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
 import {
-    follow,
+    acceptFollow,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingInProgress,
     toggleIsFetching,
-    unfollow
+    acceptUnfollow
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
 
@@ -31,8 +31,8 @@ export type ActionsTypes =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof updateNewMessageCreatorCreator>
     | ReturnType<typeof sendMessageCreator>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof acceptFollow>
+    | ReturnType<typeof acceptUnfollow>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
