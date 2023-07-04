@@ -7,7 +7,8 @@ import {sendMessageCreator, updateNewMessageCreatorCreator} from '../../redux/di
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        dialogPage: state.dialogPage
+        dialogPage: state.dialogPage,
+        isAuth: state.auth.isAuth
     }
 }
 
