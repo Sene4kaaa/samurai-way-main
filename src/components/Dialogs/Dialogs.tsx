@@ -26,7 +26,6 @@ type DialogsPropsType = {
     dialogPage: DialogPageType
     onSendMessageClick: () => void
     onNewMessageChange: (body: string) => void
-    isAuth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -43,7 +42,6 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     }
 
-    if (!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>
