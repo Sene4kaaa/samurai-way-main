@@ -15,10 +15,6 @@ type MapStatePropsType = {
     profile: ProfileType | null
 }
 
-export type MapStateForRedirectPropsType = {
-    isAuth: boolean
-}
-
 type MapDispatchToPropsType = {
     getUserProfileTC: (userId: string) => void
 }
@@ -44,13 +40,11 @@ class ProfileContainer extends React.Component<PropsType, {}> {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile
 })
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
+let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {getUserProfileTC})(WithUrlDataContainerComponent);
+export default withAuthRedirect(connect(mapStateToProps, {getUserProfileTC})(WithUrlDataContainerComponent));

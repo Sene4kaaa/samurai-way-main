@@ -69,11 +69,11 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 
-let withRedirect = withAuthRedirect(UsersContainerAPI)
 
-export const UsersContainer = connect(mapStateToProps, {
+
+export const UsersContainer = withAuthRedirect(connect(mapStateToProps, {
     setCurrentPage,
     getUsersTC,
     followTC,
     unfollowTC
-})(withRedirect)
+})(UsersContainerAPI))
