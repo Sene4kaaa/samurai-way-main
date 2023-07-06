@@ -69,8 +69,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 
-
-
 export const UsersContainer = withAuthRedirect(connect(mapStateToProps, {
     setCurrentPage,
     getUsersTC,
