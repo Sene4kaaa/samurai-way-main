@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 
 type ProfileStatusPropsType = {
     status: string
-    updateStatus: any
+    updateStatus: (status: string) => void
 }
 
 
