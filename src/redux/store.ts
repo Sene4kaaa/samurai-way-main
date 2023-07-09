@@ -13,7 +13,7 @@
 // }
 
 
-import {addPostActionCreator, changeNewTextActionCreator, setUserProfile} from "./profile-reducer";
+import {addPostActionCreator, changeNewTextActionCreator, setStatus, setUserProfile} from "./profile-reducer";
 import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
 import {
     acceptFollow,
@@ -39,6 +39,7 @@ export type ActionsTypes =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleFollowingInProgress>
+    | ReturnType<typeof setStatus>
 
 /*
 export const store: StoreType = {
