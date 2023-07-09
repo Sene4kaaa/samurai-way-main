@@ -23,6 +23,13 @@ export const usersAPI = {
             .delete(`follow/${userId}`)
     },
     getProfile(userId: string) {
+        console.log('Obsolete method.Please use profileAPI object')
+        return profileAPI.getProfile(userId)
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: string) {
         return instance
             .get(`profile/` + userId)
 
