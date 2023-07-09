@@ -1,8 +1,7 @@
 import React from "react";
 
-export const Login = () => {
-    return <div>
-        <h1>Login</h1>
+const LoginForm = () => {
+    return (
         <form>
             <div>
                 <input placeholder={'Login'}/>
@@ -17,5 +16,13 @@ export const Login = () => {
                 <button>Login</button>
             </div>
         </form>
+    )
+}
+
+export const Login = () => {
+    return <div>
+        <h1>Login</h1>
+        <LoginForm/>
     </div>
+
 }
