@@ -26,6 +26,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 }
 
+
 const LoginReduxForm = reduxForm<FormDataType>({
     // a unique name for the form
     form: 'login'
