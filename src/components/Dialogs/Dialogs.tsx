@@ -74,9 +74,10 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <form onSubmit={formik.handleSubmit}>
                     <textarea
                         placeholder={'Enter you text'}
-                        name="message"
-                        onChange={formik.handleChange}
-                        value={formik.values.message}
+                        // name="message"
+                        // onChange={formik.handleChange}
+                        // value={formik.values.message}
+                        {...formik.getFieldProps('message')}
                     />
                     {formik.touched.message && formik.errors.message &&
                         <div style={{color: 'red'}}>{formik.errors.message}</div>}
