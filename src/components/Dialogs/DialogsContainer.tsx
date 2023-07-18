@@ -14,5 +14,5 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps),
-    // withAuthRedirect
+    withAuthRedirect
 )(Dialogs)

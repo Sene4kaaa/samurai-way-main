@@ -45,22 +45,28 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 export const getAuthUserData = (): AppThunk => (dispatch: Dispatch) => {
     authAPI.me()
         .then(response => {
+            console.log('getAuthUserData')
+            console.log(response)
             if (response.data.resultCode === 0) {
+                console.log(response)
                 let {id, email, login} = response.data.data
                 dispatch(setAuthUserData(id, email, login, true))
             }
         })
 }
-export const login = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
+    console.log('loginTC')
+
     authAPI.login(email, password, rememberMe)
         .then(response => {
+            console.log(response)
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
             }
         })
 }
 
-export const logout = (): AppThunk => (dispatch: Dispatch) => {
+export const logoutTC = (): AppThunk => (dispatch: Dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {

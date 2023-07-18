@@ -1,5 +1,7 @@
 import React from "react";
 import {FormikProvider, useFormik} from "formik";
+import {connect, useDispatch} from "react-redux";
+import {loginTC} from "../../redux/auth-reducer";
 
 
 type ErrorType = {
@@ -7,8 +9,9 @@ type ErrorType = {
     password?: string
 }
 
-export const Login = () => {
+const Login = () => {
 
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -34,7 +37,7 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            // dispatch(sendMessageCreator(values.email))
+            dispatch(loginTC(values.email, values.password, values.rememberMe))
             formik.resetForm();
         },
     });
@@ -56,7 +59,7 @@ export const Login = () => {
                 {formik.touched.email && formik.errors.email &&
                     <div style={{color: 'red'}}>{formik.errors.email}</div>}
                 <div>
-                    <input
+                    <input type={'password'}
                         placeholder={'password'}
                         // name="password"
                         // onChange={formik.handleChange}
@@ -81,3 +84,5 @@ export const Login = () => {
         </FormikProvider>
     </div>
 }
+
+export default connect(null, {loginTC})(Login)
