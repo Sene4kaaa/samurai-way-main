@@ -1,10 +1,8 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
 import {FormikProvider, useFormik} from "formik";
-import {sendMessageCreator} from "../../../redux/dialogs-reducer";
+
 import {useDispatch} from "react-redux";
 import {addPostActionCreator} from "../../../redux/profile-reducer";
 
@@ -20,9 +18,7 @@ type MyPostsPropsType = {
     posts: Array<PostType>
 }
 
-// type AddNewPostFormReduxType = {
-//     newPostText: string
-// }
+
 
 type ErrorType = {
     message?: string,
@@ -56,11 +52,6 @@ const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => <div key={p.id}><Post message={p.message} likeCounts={p.likesCounts}/>
     </div>)
 
-
-    // const addPost = (values: { newPostText: string }) => {
-    //     props.addPost(values.newPostText)
-    // }
-
     return (
         <div className={s.postBlock}>
             <h3>My posts</h3>
@@ -84,25 +75,5 @@ const MyPosts = (props: MyPostsPropsType) => {
     )
 }
 
-// const maxLength10 = maxLengthCreator(10)
-//
-// const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormReduxType>> = (props) => {
-//     return (
-//         <form onSubmit={props.handleSubmit}>
-//             <div>
-//                 <Field
-//                     name={'newPostText'}
-//                     component={Textarea}
-//                     placeholder={'Post message'}
-//                     validate={[requiredField,maxLength10]}/>
-//             </div>
-//             <div>
-//                 <button>Add post</button>
-//             </div>
-//         </form>
-//     )
-// }
-//
-// const AddNewPostFormRedux = reduxForm<AddNewPostFormReduxType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
 
 export default MyPosts;

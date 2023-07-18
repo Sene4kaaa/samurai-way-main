@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {useFormik, Field, FormikProvider} from "formik";
+import {useFormik, FormikProvider} from "formik";
 import {useDispatch} from "react-redux";
 import {sendMessageCreator} from "../../redux/dialogs-reducer";
 
