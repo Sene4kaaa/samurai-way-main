@@ -14,7 +14,7 @@
 
 
 import {addPostActionCreator, changeNewTextActionCreator, setStatus, setUserProfile} from "./profile-reducer";
-import {sendMessageCreator, updateNewMessageCreatorCreator} from "./dialogs-reducer";
+import {sendMessageCreator} from "./dialogs-reducer";
 import {
     acceptFollow,
     setCurrentPage,
@@ -29,7 +29,6 @@ export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof changeNewTextActionCreator>
     | ReturnType<typeof setUserProfile>
-    | ReturnType<typeof updateNewMessageCreatorCreator>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof acceptFollow>
     | ReturnType<typeof acceptUnfollow>

@@ -18,14 +18,11 @@ type DialogsType = {
 type DialogPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageBody: string
-
 }
 
 type DialogsPropsType = {
     dialogPage: DialogPageType
-    onSendMessageClick: () => void
-    onNewMessageChange: (body: string) => void
+    onSendMessageClick: (values: string) => void
 }
 
 type AddMessageFormReduxType = {
@@ -36,16 +33,10 @@ export const Dialogs = (props: DialogsPropsType) => {
 
     let dialogsElements = props.dialogPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = props.dialogPage.messages.map(m => <Message message={m.message} key={m.id}/>)
-    let newMessageBody = props.dialogPage.newMessageBody
 
-    let onSendMessageClick = () => {
-        props.onSendMessageClick()
+    let addNewMessage = (values: { newMessageBody: string }) => {
+        props.onSendMessageClick(values.newMessageBody)
     }
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onNewMessageChange(e.currentTarget.value)
-
-    }
-
 
     return (
         <div className={s.dialogs}>
@@ -56,7 +47,7 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <div> {messagesElements}</div>
 
             </div>
-            <AddMessageFormRedux/>
+            <AddMessageFormRedux onSubmit={addNewMessage}/>
         </div>
     )
 }
