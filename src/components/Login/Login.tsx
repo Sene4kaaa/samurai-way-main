@@ -2,6 +2,9 @@ import React from "react";
 import {FormikProvider, useFormik} from "formik";
 import {connect, useDispatch} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
+import {AppStateType} from "../../redux/redux-store";
+import {ProfileType} from "../../redux/profile-reducer";
+import {Redirect} from "react-router-dom";
 
 
 type ErrorType = {
@@ -9,7 +12,7 @@ type ErrorType = {
     password?: string
 }
 
-const Login = () => {
+const Login = (props: any) => {
 
     const dispatch = useDispatch()
 
@@ -42,6 +45,9 @@ const Login = () => {
         },
     });
 
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
 
     return <div>
         <h1>Login</h1>
@@ -60,11 +66,11 @@ const Login = () => {
                     <div style={{color: 'red'}}>{formik.errors.email}</div>}
                 <div>
                     <input type={'password'}
-                        placeholder={'password'}
+                           placeholder={'password'}
                         // name="password"
                         // onChange={formik.handleChange}
                         // value={formik.values.password}
-                        {...formik.getFieldProps('password')}
+                           {...formik.getFieldProps('password')}
                     />
                 </div>
                 {formik.touched.password && formik.errors.password &&
@@ -85,4 +91,12 @@ const Login = () => {
     </div>
 }
 
-export default connect(null, {loginTC})(Login)
+type MapStatePropsType = {
+    isAuth: boolean
+}
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    isAuth: state.auth.isAuth,
+})
+
+export default connect(mapStateToProps, {loginTC})(Login)
