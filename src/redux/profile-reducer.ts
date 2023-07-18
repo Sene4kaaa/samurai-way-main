@@ -32,14 +32,9 @@ export type ProfilePhotosPropsType = {
     small: string,
     large: string
 }
-export type ProfilePageType = {
-    messageForNewPost: string
-    posts: Array<PostType>
-}
 
 
 const initialState = {
-    messageForNewPost: 'Hello Andrew',
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCounts: 12},
         {id: 2, message: 'it\'s my first post', likesCounts: 11},
@@ -63,7 +58,6 @@ export const profileReducer = (state: initialStateType = initialState, action: A
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                messageForNewPost: ''
             }
         case 'SET_USER_PROFILE':
             return {

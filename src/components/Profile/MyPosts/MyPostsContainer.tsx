@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        messageForNewPost: state.profilePage.messageForNewPost,
         posts: state.profilePage.posts
     }
 }
