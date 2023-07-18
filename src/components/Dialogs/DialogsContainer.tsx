@@ -13,19 +13,19 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
-    return {
-        onSendMessageClick: (newMessageBody: string) => {
-            dispatch(sendMessageCreator(newMessageBody))
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch: DispatchType) => {
+//     return {
+//         onSendMessageClick: (newMessageBody: string) => {
+//             dispatch(sendMessageCreator(newMessageBody))
+//         }
+//     }
+// }
 
 
 // export const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps, /*mapDispatchToProps*/),
     withAuthRedirect
 )(Dialogs)

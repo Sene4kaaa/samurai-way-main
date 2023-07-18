@@ -48,7 +48,11 @@ const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormReduxType>> = (pr
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={'newPostText'} component={Textarea} placeholder={'Post message'} validate={[requiredField,maxLength10]}/>
+                <Field
+                    name={'newPostText'}
+                    component={Textarea}
+                    placeholder={'Post message'}
+                    validate={[requiredField,maxLength10]}/>
             </div>
             <div>
                 <button>Add post</button>

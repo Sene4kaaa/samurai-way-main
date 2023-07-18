@@ -1,8 +1,10 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {useFormik, Field, FormikProvider} from "formik";
+import {useDispatch} from "react-redux";
+import {sendMessageCreator} from "../../redux/dialogs-reducer";
 
 
 type MessagesType = {
@@ -25,18 +27,39 @@ type DialogsPropsType = {
     onSendMessageClick: (values: string) => void
 }
 
-type AddMessageFormReduxType = {
-    newMessageBody: string
+type ErrorType = {
+    message?: string,
 }
 
+
 export const Dialogs = (props: DialogsPropsType) => {
+
+    const dispatch = useDispatch()
+
+    const formik = useFormik({
+        initialValues: {
+            message: '',
+        },
+        validate: (values) => {
+            const errors: ErrorType = {};
+
+            if (!values.message) {
+                errors.message = 'Required';
+            } else if (values.message?.length > 50) {
+                errors.message = 'Max length is 50 symbols';
+            }
+
+            return errors;
+        },
+        onSubmit: values => {
+            dispatch(sendMessageCreator(values.message))
+            formik.resetForm();
+        },
+    });
 
     let dialogsElements = props.dialogPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = props.dialogPage.messages.map(m => <Message message={m.message} key={m.id}/>)
 
-    let addNewMessage = (values: { newMessageBody: string }) => {
-        props.onSendMessageClick(values.newMessageBody)
-    }
 
     return (
         <div className={s.dialogs}>
@@ -47,23 +70,20 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <div> {messagesElements}</div>
 
             </div>
-            <AddMessageFormRedux onSubmit={addNewMessage}/>
+            <FormikProvider value={formik}>
+                <form onSubmit={formik.handleSubmit}>
+                    <textarea
+                        placeholder={'Enter you text'}
+                        name="message"
+                        onChange={formik.handleChange}
+                        value={formik.values.message}
+                    />
+                    {formik.touched.message && formik.errors.message &&
+                        <div style={{color: 'red'}}>{formik.errors.message}</div>}
+                    <button type="submit">Submit</button>
+                </form>
+            </FormikProvider>
         </div>
     )
 }
 
-
-const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormReduxType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}/>
-            </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
-    )
-}
-
-const AddMessageFormRedux = reduxForm<AddMessageFormReduxType>({form: 'dialogAddMessageForm'})(AddMessageForm)
