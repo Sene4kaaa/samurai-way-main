@@ -59,9 +59,10 @@ const MyPosts = (props: MyPostsPropsType) => {
                 <form onSubmit={formik.handleSubmit}>
                     <input
                         placeholder={'Enter you text'}
-                        name="message"
-                        onChange={formik.handleChange}
-                        value={formik.values.message}
+                        // name="message"
+                        // onChange={formik.handleChange}
+                        // value={formik.values.message}
+                        {...formik.getFieldProps('message')}
                     />
                     {formik.touched.message && formik.errors.message &&
                         <div style={{color: 'red'}}>{formik.errors.message}</div>}
