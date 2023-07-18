@@ -11,13 +11,13 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
-    return {
-        addPost: (newPostText: string) => {
-            dispatch(addPostActionCreator(newPostText))
-        },
-    }
-}
+// const mapDispatchToProps = (dispatch: DispatchType) => {
+//     return {
+//         addPost: (newPostText: string) => {
+//             dispatch(addPostActionCreator(newPostText))
+//         },
+//     }
+// }
 
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+export const MyPostsContainer = connect(mapStateToProps,/* mapDispatchToProps*/)(MyPosts)
