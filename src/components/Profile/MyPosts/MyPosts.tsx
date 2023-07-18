@@ -1,7 +1,7 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 
 type PostType = {
@@ -11,12 +11,13 @@ type PostType = {
 }
 
 type MyPostsPropsType = {
-    addPost: () => void
-    newTextChangeHandler: (value: string) => void
-    messageForNewPost: string
+    addPost: (values: string) => void
     posts: Array<PostType>
 }
 
+type AddNewPostFormReduxType = {
+    newPostText: string
+}
 
 const MyPosts = (props: MyPostsPropsType) => {
 
@@ -24,32 +25,35 @@ const MyPosts = (props: MyPostsPropsType) => {
     </div>)
 
 
-    const addPost = () => {
-        props.addPost()
+    const addPost = (values: { newPostText: string }) => {
+        props.addPost(values.newPostText)
     }
-
-    const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.newTextChangeHandler(e.currentTarget.value)
-    }
-
 
     return (
         <div className={s.postBlock}>
             <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea value={props.messageForNewPost}
-                              onChange={newTextChangeHandler}/>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
+            <AddNewPostFormRedux onSubmit={addPost}/>
             <div className={s.posts}>
                 {postsElements}
             </div>
         </div>
     )
 }
+
+
+const AddNewPostForm: React.FC<InjectedFormProps<AddNewPostFormReduxType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name={'newPostText'} component={'textarea'}/>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const AddNewPostFormRedux = reduxForm<AddNewPostFormReduxType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
 
 export default MyPosts;
