@@ -42,7 +42,7 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
 
 
 export const getAuthUserData = (): AppThunk => (dispatch: Dispatch) => {
-    authAPI.me()
+    return authAPI.me()
         .then(response => {
             console.log('getAuthUserData')
             console.log(response)
