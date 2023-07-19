@@ -3,8 +3,8 @@ import {FormikProvider, useFormik} from "formik";
 import {connect, useDispatch} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
-import {ProfileType} from "../../redux/profile-reducer";
 import {Redirect} from "react-router-dom";
+import s from "./Login.module.css"
 
 
 type ErrorType = {
@@ -39,8 +39,8 @@ const Login = (props: any) => {
 
             return errors;
         },
-        onSubmit: values => {
-            dispatch(loginTC(values.email, values.password, values.rememberMe))
+        onSubmit: (values, {setStatus}) => {
+            dispatch(loginTC(values.email, values.password, values.rememberMe, setStatus))
             formik.resetForm();
         },
     });
@@ -85,6 +85,7 @@ const Login = (props: any) => {
                     />
                     <span> Remember Me</span>
                 </div>
+                {formik.status && <div className={s.formSummaryError}>{formik.status}</div>}
                 <button type="submit">Submit</button>
             </form>
         </FormikProvider>
