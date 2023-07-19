@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    getUsersTC,
+    requestUsersTC,
     setCurrentPage,
     UserType, followTC, unfollowTC
 } from "../../redux/users-reducer";
@@ -92,7 +92,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
         setCurrentPage,
-        getUsersTC,
+        getUsersTC: requestUsersTC,
         followTC,
         unfollowTC
     }),
