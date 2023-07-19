@@ -5,7 +5,7 @@ import {AppThunk} from "./redux-store";
 
 
 let initialState: InitialStateType = {
-    userId: '',
+    userId: null,
     email: null,
     login: null,
     isAuth: false
@@ -13,7 +13,7 @@ let initialState: InitialStateType = {
 }
 
 export type InitialStateType = {
-    userId: string,
+    userId: null | number,
     email: null | string,
     login: null | string,
     isAuth: boolean
@@ -33,7 +33,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 
 }
 
-export const setAuthUserData = (userId: string , email: string | null, login: string | null, isAuth: boolean) => {
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: 'SET_USER_DATA',
         payload: {userId, email, login, isAuth}
@@ -61,7 +61,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, se
             console.log(response)
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
-            } else {
+            } else if (response.data.resultCode !== 0) {
                 setStatus(response.data.messages[0])
             }
         })
@@ -71,7 +71,7 @@ export const logoutTC = (): AppThunk => (dispatch: Dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData('', null, null, false))
+                dispatch(setAuthUserData(null, null, null, false))
             }
         })
 }
