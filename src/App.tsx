@@ -21,7 +21,7 @@ type MapDispatchToPropsType = {
 
 type AppPropsType = MapDispatchToPropsType
 
-class App extends React.Component<any> {
+class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
         this.props.getAuthUserData()
