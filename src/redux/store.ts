@@ -24,6 +24,7 @@ import {
     acceptUnfollow
 } from "./users-reducer";
 import {setAuthUserData} from "./auth-reducer";
+import {initializedSuccess} from "./app-reducer";
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
@@ -38,6 +39,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleFollowingInProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof initializedSuccess>
 
 /*
 export const store: StoreType = {

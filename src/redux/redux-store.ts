@@ -7,6 +7,7 @@ import {authReducer} from "./auth-reducer";
 import thunk, {ThunkAction} from "redux-thunk";
 import { reducer as formReducer } from 'redux-form'
 import {ActionsTypes} from "./store";
+import {appReducer} from "./app-reducer";
 
 
 export const rootReducer = combineReducers({
@@ -15,7 +16,9 @@ export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     users: usersReducer,
     auth: authReducer,
-    form: formReducer
+    app: appReducer,
+    form: formReducer,
+
 })
 
 
