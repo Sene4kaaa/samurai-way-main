@@ -18,10 +18,12 @@ export const ProfileStatusWithHooks = (props: ProfileStatusWithHooksPropsType) =
     const activateEditMode = () => {
         setEditMode(true)
     }
+
     const deactivateEditMode = () => {
         setEditMode(false)
         props.updateStatus(status)
     }
+
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
