@@ -14,7 +14,6 @@ type PostType = {
 }
 
 type MyPostsPropsType = {
-    // addPost: (values: string) => void
     posts: Array<PostType>
 }
 
