@@ -24,8 +24,8 @@ type ErrorType = {
     message?: string,
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
-
+const MyPosts = React.memo((props: MyPostsPropsType) => {
+    console.log('RENDER')
     const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -74,7 +74,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     )
-}
+})
 
 
 export default MyPosts;
