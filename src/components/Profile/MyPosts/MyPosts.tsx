@@ -17,8 +17,6 @@ type MyPostsPropsType = {
     posts: Array<PostType>
 }
 
-
-
 type ErrorType = {
     message?: string,
 }
