@@ -59,9 +59,6 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
                 <form onSubmit={formik.handleSubmit}>
                     <input
                         placeholder={'Enter you text'}
-                        // name="message"
-                        // onChange={formik.handleChange}
-                        // value={formik.values.message}
                         {...formik.getFieldProps('message')}
                     />
                     {formik.touched.message && formik.errors.message &&
