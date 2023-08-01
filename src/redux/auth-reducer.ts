@@ -4,6 +4,8 @@ import {authAPI} from "../api/api";
 import {AppThunk} from "./redux-store";
 
 
+const SET_USER_DATA = 'auth/SET_USER_DATA'
+
 let initialState: InitialStateType = {
     userId: null,
     email: null,
@@ -21,7 +23,7 @@ export type InitialStateType = {
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case 'SET_USER_DATA' :
+        case SET_USER_DATA :
             return {
                 ...state,
                 ...action.payload,
@@ -35,7 +37,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
-        type: 'SET_USER_DATA',
+        type: SET_USER_DATA,
         payload: {userId, email, login, isAuth}
     } as const
 }
