@@ -29,7 +29,6 @@ type MapStatePropsType = {
     followingInProgress: number[]
 }
 
-
 type MapDispatchToPropsType = {
     followTC: (userId: number) => void
     unfollowTC: (userId: number) => void
@@ -66,17 +65,6 @@ class UsersContainerAPI extends React.Component<UsersAPIPropsType, {}> {
     }
 }
 
-// const mapStateToProps = (state: AppStateType): MapStatePropsType => {
-//     return {
-//         users: state.users.users,
-//         pageSize: state.users.pageSize,
-//         totalUsersCount: state.users.totalUsersCount,
-//         currentPage: state.users.currentPage,
-//         isFetching: state.users.isFetching,
-//         followingInProgress: state.users.followingInProgress
-//     }
-// }
-
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
@@ -87,7 +75,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-
 
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
