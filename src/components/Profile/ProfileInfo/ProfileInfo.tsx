@@ -18,9 +18,6 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img src={'https://ic.pics.livejournal.com/usolt/5104380/764394/764394_original.jpg'}/>*/}
-            {/*</div>*/}
             <div className={s.descriptionBloch}>
                 <img src={props.profile.photos.large}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
