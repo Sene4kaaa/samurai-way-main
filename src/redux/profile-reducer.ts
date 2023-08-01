@@ -70,7 +70,7 @@ export const profileReducer = (state: initialStateType = initialState, action: A
                 status: action.status
             }
         case "DELETE-POST" :
-            return {...state,posts: state.posts.filter(p => p.id !== action.postId)}
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
     }
@@ -87,7 +87,6 @@ export const deletePostActionCreator = (postId: number) => {
         type: "DELETE-POST", postId
     } as const
 }
-
 export const setUserProfile = (profile: ProfileType) => {
     return {
         type: "SET_USER_PROFILE",
@@ -107,14 +106,12 @@ export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
             dispatch(setUserProfile(response.data))
         })
 }
-
 export const getStatusTC = (userId: string) => (dispatch: Dispatch) => {
     profileAPI.getStatus(userId)
         .then(response => {
             dispatch(setStatus(response.data))
         })
 }
-
 export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then(response => {
