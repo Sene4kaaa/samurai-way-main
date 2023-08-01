@@ -52,18 +52,14 @@ export const getAuthUserData = (): AppThunk => async (dispatch: Dispatch) => {
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
-export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: (status: string) => void): AppThunk => (dispatch) => {
-    console.log('loginTC')
 
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            console.log(response)
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else if (response.data.resultCode !== 0) {
-                setStatus(response.data.messages[0])
-            }
-        })
+export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: (status: string) => void): AppThunk => async (dispatch) => {
+    const response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else if (response.data.resultCode !== 0) {
+        setStatus(response.data.messages[0])
+    }
 }
 
 export const logoutTC = (): AppThunk => (dispatch: Dispatch) => {
