@@ -166,14 +166,12 @@ export const followTC = (userId: number) => {
 }
 
 export const unfollowTC = (userId: number) => {
-    return (dispatch: Dispatch<ActionsTypes>) => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleFollowingInProgress(true, userId))
-        usersAPI.unfollow(userId)
-            .then(response => {
-                if (response.data.resultCode == 0) {
-                    dispatch(acceptUnfollow(userId))
-                }
-                dispatch(toggleFollowingInProgress(false, userId))
-            })
+        const response = await usersAPI.unfollow(userId)
+        if (response.data.resultCode == 0) {
+            dispatch(acceptUnfollow(userId))
+        }
+        dispatch(toggleFollowingInProgress(false, userId))
     }
 }
