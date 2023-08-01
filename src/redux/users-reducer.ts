@@ -142,7 +142,6 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
     } as const
 }
 
-
 export const requestUsers = (page: number, pageSize: number) => {
     return async (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleIsFetching(true))
