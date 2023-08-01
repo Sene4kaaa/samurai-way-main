@@ -13,7 +13,7 @@
 // }
 
 
-import {addPostActionCreator, deletePostActionCreator, setStatus, setUserProfile} from "./profile-reducer";
+import {addPost, deletePost, setStatus, setUserProfile} from "./profile-reducer";
 import {sendMessageCreator} from "./dialogs-reducer";
 import {
     acceptFollow,
@@ -27,7 +27,7 @@ import {setAuthUserData} from "./auth-reducer";
 import {initializedSuccess} from "./app-reducer";
 
 export type ActionsTypes =
-    ReturnType<typeof addPostActionCreator>
+    ReturnType<typeof addPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof sendMessageCreator>
     | ReturnType<typeof acceptFollow>
@@ -40,7 +40,7 @@ export type ActionsTypes =
     | ReturnType<typeof toggleFollowingInProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
-    | ReturnType<typeof deletePostActionCreator>
+    | ReturnType<typeof deletePost>
 
 
 /*

@@ -1,4 +1,4 @@
-import {addPostActionCreator, deletePostActionCreator, PostType, profileReducer, ProfileType} from "./profile-reducer";
+import {addPost, deletePost, PostType, profileReducer, ProfileType} from "./profile-reducer";
 
 let state = {
     posts: [
@@ -13,7 +13,7 @@ let state = {
 
 test('length of posts should be incremented', cb => {
     // 1 test data
-    let action = addPostActionCreator('BMW')
+    let action = addPost('BMW')
 
 
     // 2 action
@@ -25,7 +25,7 @@ test('length of posts should be incremented', cb => {
 
 test('message of new post should be BMW', cb => {
     // 1 test data
-    let action = addPostActionCreator('BMW')
+    let action = addPost('BMW')
 
 
     // 2 action
@@ -37,7 +37,7 @@ test('message of new post should be BMW', cb => {
 
 test('after deleting length of messages should be decrement', cb => {
     // 1 test data
-    let action = deletePostActionCreator(1)
+    let action = deletePost(1)
 
 
     // 2 action

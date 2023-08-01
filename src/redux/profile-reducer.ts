@@ -84,12 +84,12 @@ export const profileReducer = (state: initialStateType = initialState, action: A
 
 }
 
-export const addPostActionCreator = (newPostText: string) => {
+export const addPost = (newPostText: string) => {
     return {
         type: ADD_POST, newPostText
     } as const
 }
-export const deletePostActionCreator = (postId: number) => {
+export const deletePost = (postId: number) => {
     return {
         type: DELETE_POST, postId
     } as const
@@ -107,17 +107,17 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch) => {
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data))
 }
 
-export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {
+export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data))
 }
 
-export const updateStatusTC = (status: string) => async (dispatch: Dispatch) => {
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0)
         dispatch(setStatus(status))

@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import {FormikProvider, useFormik} from "formik";
 
 import {useDispatch} from "react-redux";
-import {addPostActionCreator} from "../../../redux/profile-reducer";
+import {addPost} from "../../../redux/profile-reducer";
 
 
 type PostType = {
@@ -41,7 +41,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
             return errors;
         },
         onSubmit: values => {
-            dispatch(addPostActionCreator(values.message))
+            dispatch(addPost(values.message))
             formik.resetForm();
         },
     });
