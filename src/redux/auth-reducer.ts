@@ -62,11 +62,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, se
     }
 }
 
-export const logoutTC = (): AppThunk => (dispatch: Dispatch) => {
-    authAPI.logout()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false))
-            }
-        })
+export const logoutTC = (): AppThunk => async (dispatch: Dispatch) => {
+    const response = await authAPI.logout()
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
+    }
 }
