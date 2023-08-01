@@ -18,21 +18,7 @@ type UsersPropsType = {
 }
 
 export const Users = (props: UsersPropsType) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++)
-        pages.push(i)
-
     return <div>
-        {/*<div>*/}
-        {/*    {pages.map(p => {*/}
-        {/*        return <span key={p} className={props.currentPage === p ? styles.selectedPage : ''}*/}
-        {/*                     onClick={(e) => {*/}
-        {/*                         props.onPageChanged(p)*/}
-        {/*                     }}>{p}</span>*/}
-        {/*    })}*/}
-        {/*</div>*/}
         <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
                    onPageChanged={props.onPageChanged}/>
         {

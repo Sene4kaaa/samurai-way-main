@@ -7,7 +7,6 @@ type PaginatorPropsType = {
     pageSize: number
     currentPage: number
     onPageChanged: (p: number) => void
-
 }
 
 export const Paginator = (props: PaginatorPropsType) => {
