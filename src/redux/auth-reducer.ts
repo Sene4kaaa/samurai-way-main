@@ -53,7 +53,7 @@ export const getAuthUserData = (): AppThunk => async (dispatch: Dispatch) => {
     }
 }
 
-export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: (status: string) => void): AppThunk => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean, setStatus: (status: string) => void): AppThunk => async (dispatch) => {
     const response = await authAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
@@ -62,7 +62,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, se
     }
 }
 
-export const logoutTC = (): AppThunk => async (dispatch: Dispatch) => {
+export const logout = (): AppThunk => async (dispatch: Dispatch) => {
     const response = await authAPI.logout()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))

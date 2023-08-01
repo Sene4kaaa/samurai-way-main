@@ -1,7 +1,7 @@
 import React from "react";
 import {FormikProvider, useFormik} from "formik";
 import {connect, useDispatch} from "react-redux";
-import {loginTC} from "../../redux/auth-reducer";
+import {login} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import s from "./Login.module.css"
@@ -40,7 +40,7 @@ const Login = (props: any) => {
             return errors;
         },
         onSubmit: (values, {setStatus}) => {
-            dispatch(loginTC(values.email, values.password, values.rememberMe, setStatus))
+            dispatch(login(values.email, values.password, values.rememberMe, setStatus))
             formik.resetForm();
         },
     });
@@ -100,4 +100,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
 })
 
-export default connect(mapStateToProps, {loginTC})(Login)
+export default connect(mapStateToProps, {loginTC: login})(Login)
