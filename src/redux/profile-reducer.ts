@@ -105,11 +105,9 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const getUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
-    usersAPI.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch) => {
+    const response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data))
 }
 export const getStatusTC = (userId: string) => (dispatch: Dispatch) => {
     profileAPI.getStatus(userId)
@@ -117,12 +115,10 @@ export const getStatusTC = (userId: string) => (dispatch: Dispatch) => {
             dispatch(setStatus(response.data))
         })
 }
-export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0)
-                dispatch(setStatus(status))
-        })
+export const updateStatusTC = (status: string) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0)
+        dispatch(setStatus(status))
 }
 
 
