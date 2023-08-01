@@ -40,7 +40,6 @@ export type ProfilePhotosPropsType = {
     large: string
 }
 
-
 const initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCounts: 12},
