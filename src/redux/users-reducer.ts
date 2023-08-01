@@ -176,8 +176,9 @@ export const follow = (userId: number) => {
 
 export const unfollow = (userId: number) => {
     return async (dispatch: Dispatch<ActionsTypes>) => {
+        const apiMethod = usersAPI.unfollow.bind(usersAPI)
         dispatch(toggleFollowingInProgress(true, userId))
-        const response = await usersAPI.unfollow(userId)
+        const response = await apiMethod(userId)
         if (response.data.resultCode == 0) {
             dispatch(acceptUnfollow(userId))
         }
