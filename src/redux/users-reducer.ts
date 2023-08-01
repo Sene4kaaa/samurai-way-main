@@ -155,15 +155,13 @@ export const requestUsersTC = (page: number, pageSize: number) => {
 }
 
 export const followTC = (userId: number) => {
-    return (dispatch: Dispatch<ActionsTypes>) => {
+    return async (dispatch: Dispatch<ActionsTypes>) => {
         dispatch(toggleFollowingInProgress(true, userId))
-        usersAPI.follow(userId)
-            .then(response => {
-                if (response.data.resultCode == 0) {
-                    dispatch(acceptFollow(userId))
-                }
-                dispatch(toggleFollowingInProgress(false, userId))
-            })
+        const response = await usersAPI.follow(userId)
+        if (response.data.resultCode == 0) {
+            dispatch(acceptFollow(userId))
+        }
+        dispatch(toggleFollowingInProgress(false, userId))
     }
 }
 
