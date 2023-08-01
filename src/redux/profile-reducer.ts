@@ -69,6 +69,8 @@ export const profileReducer = (state: initialStateType = initialState, action: A
                 ...state,
                 status: action.status
             }
+        case "DELETE-POST" :
+            return {...state,posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
     }
@@ -78,6 +80,11 @@ export const profileReducer = (state: initialStateType = initialState, action: A
 export const addPostActionCreator = (newPostText: string) => {
     return {
         type: "ADD-POST", newPostText
+    } as const
+}
+export const deletePostActionCreator = (postId: number) => {
+    return {
+        type: "DELETE-POST", postId
     } as const
 }
 

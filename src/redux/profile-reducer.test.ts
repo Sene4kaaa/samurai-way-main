@@ -1,4 +1,4 @@
-import {addPostActionCreator, PostType, profileReducer, ProfileType} from "./profile-reducer";
+import {addPostActionCreator, deletePostActionCreator, PostType, profileReducer, ProfileType} from "./profile-reducer";
 
 let state = {
     posts: [
@@ -33,5 +33,17 @@ test('message of new post should be BMW', cb => {
 
     // 3 expectation
     expect(newState.posts[4].message).toBe('BMW')
+})
+
+test('after deleting length of messages should be decrement', cb => {
+    // 1 test data
+    let action = deletePostActionCreator(1)
+
+
+    // 2 action
+    let newState = profileReducer(state,action)
+
+    // 3 expectation
+    expect(newState.posts.length).toBe(3)
 })
 
