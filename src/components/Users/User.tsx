@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./users.module.css";
+import styles from "./user.module.css";
 import UserAvatar from "../../assets/images/UserAvatar.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
