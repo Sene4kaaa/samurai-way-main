@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/profile-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import UserAvatar from "../../../assets/images/UserAvatar.png";
 
 
 type ProfileInfoPropsType = {
@@ -19,7 +20,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     return (
         <div>
             <div className={s.descriptionBloch}>
-                <img src={props.profile.photos.large}/>
+                <img src={props.profile.photos.large != null
+                    ? props.profile.photos.large
+                    : UserAvatar}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
