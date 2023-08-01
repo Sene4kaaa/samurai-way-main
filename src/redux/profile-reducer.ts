@@ -13,6 +13,7 @@ export type PostType = {
     message: string
     likesCounts: number
 }
+
 export type ProfileType = {
     aboutMe: string,
     contacts: ProfileContactsPropsType,
@@ -33,6 +34,7 @@ export type ProfileContactsPropsType = {
     github: string,
     mainLink: null
 }
+
 export type ProfilePhotosPropsType = {
     small: string,
     large: string
@@ -109,12 +111,12 @@ export const getUserProfileTC = (userId: string) => async (dispatch: Dispatch) =
     const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data))
 }
-export const getStatusTC = (userId: string) => (dispatch: Dispatch) => {
-    profileAPI.getStatus(userId)
-        .then(response => {
-            dispatch(setStatus(response.data))
-        })
+
+export const getStatusTC = (userId: string) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data))
 }
+
 export const updateStatusTC = (status: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0)
