@@ -12,7 +12,11 @@ type ErrorType = {
     password?: string
 }
 
-const Login = (props: any) => {
+type LoginPropsType = {
+    isAuth: boolean
+}
+
+const Login = (props: LoginPropsType) => {
 
     const dispatch = useDispatch()
 
@@ -56,9 +60,6 @@ const Login = (props: any) => {
                 <div>
                     <input
                         placeholder={'email'}
-                        // name="email"
-                        // onChange={formik.handleChange}
-                        // value={formik.values.email}
                         {...formik.getFieldProps('email')}
                     />
                 </div>
@@ -67,9 +68,6 @@ const Login = (props: any) => {
                 <div>
                     <input type={'password'}
                            placeholder={'password'}
-                        // name="password"
-                        // onChange={formik.handleChange}
-                        // value={formik.values.password}
                            {...formik.getFieldProps('password')}
                     />
                 </div>
