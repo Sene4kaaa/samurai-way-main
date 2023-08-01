@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    requestUsersTC,
+    requestUsers,
     setCurrentPage,
-    UserType, followTC, unfollowTC
+    UserType, follow, unfollow
 } from "../../redux/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
@@ -92,9 +92,9 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {
         setCurrentPage,
-        getUsersTC: requestUsersTC,
-        followTC,
-        unfollowTC
+        getUsersTC: requestUsers,
+        followTC: follow,
+        unfollowTC: unfollow
     }),
     withAuthRedirect
 )(UsersContainerAPI)
