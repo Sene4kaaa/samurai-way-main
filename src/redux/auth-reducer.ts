@@ -6,6 +6,7 @@ import {AppThunk} from "./redux-store";
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
 
+
 let initialState: InitialStateType = {
     userId: null,
     email: null,
