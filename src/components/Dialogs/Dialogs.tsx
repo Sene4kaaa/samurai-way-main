@@ -4,7 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {useFormik, FormikProvider} from "formik";
 import {useDispatch} from "react-redux";
-import {sendMessageCreator} from "../../redux/dialogs-reducer";
+import {sendMessage} from "../../redux/dialogs-reducer";
 
 
 type MessagesType = {
@@ -52,7 +52,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             return errors;
         },
         onSubmit: values => {
-            dispatch(sendMessageCreator(values.message))
+            dispatch(sendMessage(values.message))
             formik.resetForm();
         },
     });
