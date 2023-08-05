@@ -25,7 +25,10 @@ type MapDispatchToPropsType = {
     updateStatusTC: (status: string) => void
 }
 
+interface TimerSnapshot {
+}
 
+type Snapshot = Readonly<TimerSnapshot>
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToPropsType
 
@@ -50,7 +53,8 @@ class ProfileContainer extends React.Component<PropsType, {}> {
 
     }
 
-    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: Snapshot) {
         if (this.props.match.params.userId != prevProps.match.params.userId)
             this.refreshProfile()
     }
