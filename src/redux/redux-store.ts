@@ -32,6 +32,6 @@ export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(t
 
 export type AppStateType = ReturnType<typeof rootReducer>
 export type DispatchType = typeof store.dispatch
-// export type AppActionsType = ActionsTypes
+
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppStateType, unknown, ActionsTypes>
