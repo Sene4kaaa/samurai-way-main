@@ -25,6 +25,8 @@ type MapDispatchToPropsType = {
     updateStatusTC: (status: string) => void
 }
 
+
+
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToPropsType
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
