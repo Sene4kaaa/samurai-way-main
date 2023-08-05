@@ -7,6 +7,7 @@ import UserAvatar from "../../../assets/images/UserAvatar.png";
 
 
 type ProfileInfoPropsType = {
+    isOwner: boolean
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
