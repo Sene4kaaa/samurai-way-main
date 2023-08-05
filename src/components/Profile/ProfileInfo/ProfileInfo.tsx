@@ -24,6 +24,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img src={props.profile.photos.large != null
                     ? props.profile.photos.large
                     : UserAvatar} className={s.mainPhoto}/>
+                {props.isOwner && <input type={'file'}/>}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
