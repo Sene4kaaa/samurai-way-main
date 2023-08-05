@@ -36,6 +36,7 @@ class App extends React.Component<any> {
         }
 
         return (
+            <div className={'app-all'}>
             <div className={'app-wrapper'}>
                 <HeaderContainer/>
                 <Navbar/>
@@ -48,6 +49,7 @@ class App extends React.Component<any> {
                     <Route path={'/users'} render={() => <UsersContainer/>}/>
                     <Route path={'/login'} render={() => <Login/>}/>
                 </div>
+            </div>
             </div>
         );
     }

@@ -22,7 +22,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             <div className={s.descriptionBloch}>
                 <img src={props.profile.photos.large != null
                     ? props.profile.photos.large
-                    : UserAvatar}/>
+                    : UserAvatar} className={s.mainPhoto}/>
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
