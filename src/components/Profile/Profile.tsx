@@ -4,6 +4,7 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "../../redux/profile-reducer";
 
 export type ProfilePropsType = {
+    isOwner: boolean
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void

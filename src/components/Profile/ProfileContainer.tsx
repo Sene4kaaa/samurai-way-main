@@ -61,7 +61,10 @@ class ProfileContainer extends React.Component<PropsType, {}> {
 
     render() {
         return this.props.profile ? (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+            <Profile {...this.props}
+                     isOwner={!this.props.match.params.userId}
+                     profile={this.props.profile}
+                     status={this.props.status}
                      updateStatus={this.props.updateStatusTC}/>
         ) : null
     }
