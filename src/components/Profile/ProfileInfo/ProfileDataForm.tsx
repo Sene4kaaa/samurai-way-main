@@ -1,8 +1,7 @@
-import {ProfileContactsPropsType, ProfileType} from "../../../redux/profile-reducer";
-import s from "./ProfileInfo.module.css";
+import {ProfileType} from "../../../redux/profile-reducer";
 import React from "react";
 import {FormikProvider, useFormik} from "formik";
-import {login} from "../../../redux/auth-reducer";
+
 
 type ProfileDataFormPropsType = {
     profile: ProfileType
@@ -16,7 +15,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             fullName: '',
             lookingForAJob: false,
             MyProfessionalSkills: '',
-            AboutMe:''
+            AboutMe: ''
         },
         onSubmit: (values, {setStatus}) => {
             formik.resetForm();
@@ -65,11 +64,6 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                             {...formik.getFieldProps('AboutMe')}
                         />
                     </div>
-                    </div>
-                    <div>
-                        <b>Contacts</b>: {
-
-                    }
                     </div>
                 </form>
             </FormikProvider>
