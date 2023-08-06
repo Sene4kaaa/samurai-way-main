@@ -60,7 +60,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                     </div>
                     <div>
                         <b>About me</b>: <div>
-                        <input
+                        <textarea
                             placeholder={'About me'}
                             {...formik.getFieldProps('AboutMe')}
                         />
