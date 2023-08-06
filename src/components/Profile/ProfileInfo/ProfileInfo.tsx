@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
-import {ProfileType} from "../../../redux/profile-reducer";
+import {ProfileContactsPropsType, ProfileType} from "../../../redux/profile-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import UserAvatar from "../../../assets/images/UserAvatar.png";
 
@@ -49,7 +49,12 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                         <b>About me</b>: {props.profile.aboutMe}
                     </div>
                     <div>
-                        <b>Contacts</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}
+                        <b>Contacts</b>: {
+                        Object.keys(props.profile.contacts).map(key => {
+                            const value: string = props.profile.contacts[key as keyof ProfileContactsPropsType]
+                            return <Contact key={key} contactTitle={key} contactValue={value}/>
+                        })
+                    }
                     </div>
                 </div>
 
@@ -59,13 +64,14 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     )
 }
 
+
 type ContactPropsType = {
     contactTitle: string
     contactValue: string
 }
-
 const Contact = (props: ContactPropsType) => {
     return <div><b>{props.contactTitle}</b>: {props.contactValue}</div>
 }
+
 
 export default ProfileInfo;
