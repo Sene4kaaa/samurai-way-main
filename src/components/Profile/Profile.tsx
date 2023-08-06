@@ -8,7 +8,7 @@ export type ProfilePropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
-    savePhoto: (file: File) => void
+    savePhoto: (photoFile: File) => void
 }
 
 const Profile = (props: ProfilePropsType) => {

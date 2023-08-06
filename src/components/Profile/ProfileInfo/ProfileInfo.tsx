@@ -11,7 +11,7 @@ type ProfileInfoPropsType = {
     profile: ProfileType
     status: string
     updateStatus: (status: string) => void
-    savePhoto: (file: File) => void
+    savePhoto: (photoFile: File) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {

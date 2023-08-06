@@ -30,7 +30,7 @@ type MapDispatchToPropsType = {
     getUserProfileTC: (userId: string) => void
     getStatusTC: (userId: string) => void
     updateStatusTC: (status: string) => void
-    savePhotoTC: (file: File) => void
+    savePhotoTC: (photoFile: File) => void
 }
 
 interface TimerSnapshot {
