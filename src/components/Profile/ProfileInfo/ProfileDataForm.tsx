@@ -49,11 +49,9 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                         />
                     </div>
                     </div>
-                    {props.profile.lookingForAJob &&
-                        <div>
-                            <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
-                        </div>
-                    }
+                    <div>
+                        <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
+                    </div>
                     <div>
                         <b>About me</b>: {props.profile.aboutMe}
                     </div>

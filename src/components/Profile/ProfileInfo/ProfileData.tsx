@@ -20,11 +20,9 @@ export const ProfileData = (props: ProfileDataPropsType) => {
             <div>
                 <b>Looking for a job</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}
             </div>
-            {props.profile.lookingForAJob &&
                 <div>
                     <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
                 </div>
-            }
             <div>
                 <b>About me</b>: {props.profile.aboutMe}
             </div>
