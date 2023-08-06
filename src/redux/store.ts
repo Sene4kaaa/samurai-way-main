@@ -13,7 +13,7 @@
 // }
 
 
-import {addPost, deletePost, setStatus, setUserProfile} from "./profile-reducer";
+import {addPost, deletePost, savePhotoSuccess, setStatus, setUserProfile} from "./profile-reducer";
 import {sendMessage} from "./dialogs-reducer";
 import {
     acceptFollow,
@@ -41,6 +41,7 @@ export type ActionsTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
     | ReturnType<typeof deletePost>
+    | ReturnType<typeof savePhotoSuccess>
 
 
 /*

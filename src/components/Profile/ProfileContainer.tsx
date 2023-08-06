@@ -2,7 +2,14 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatus, getUserProfile, ProfileType, updateStatus} from "../../redux/profile-reducer";
+import {
+    getStatus,
+    getUserProfile,
+    ProfilePhotosPropsType,
+    ProfileType,
+    savePhoto,
+    updateStatus
+} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -23,6 +30,7 @@ type MapDispatchToPropsType = {
     getUserProfileTC: (userId: string) => void
     getStatusTC: (userId: string) => void
     updateStatusTC: (status: string) => void
+    savePhotoTC: (file: File) => void
 }
 
 interface TimerSnapshot {
@@ -64,7 +72,8 @@ class ProfileContainer extends React.Component<PropsType, {}> {
                      isOwner={!this.props.match.params.userId}
                      profile={this.props.profile}
                      status={this.props.status}
-                     updateStatus={this.props.updateStatusTC}/>
+                     updateStatus={this.props.updateStatusTC}
+                     savePhoto={this.props.savePhotoTC}/>
         ) : null
     }
 }
@@ -78,7 +87,12 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfileTC: getUserProfile, getStatusTC: getStatus, updateStatusTC: updateStatus}),
+    connect(mapStateToProps, {
+        getUserProfileTC: getUserProfile,
+        getStatusTC: getStatus,
+        updateStatusTC: updateStatus,
+        savePhotoTC: savePhoto
+    }),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

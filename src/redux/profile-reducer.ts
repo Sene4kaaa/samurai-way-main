@@ -3,10 +3,12 @@ import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 
+
 const ADD_POST = 'profile/ADD-POST'
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
 
 export type PostType = {
     id: number
@@ -37,7 +39,7 @@ export type ProfileContactsPropsType = {
 
 export type ProfilePhotosPropsType = {
     small: string,
-    large: string
+    large: string,
 }
 
 const initialState = {
@@ -77,6 +79,8 @@ export const profileReducer = (state: initialStateType = initialState, action: A
             }
         case DELETE_POST :
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
+        case SAVE_PHOTO_SUCCESS :
+            return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
         default:
             return state
     }
@@ -105,6 +109,15 @@ export const setStatus = (status: string) => {
         status
     } as const
 }
+export const savePhotoSuccess = (photos: ProfilePhotosPropsType) => {
+    return {
+        type: SAVE_PHOTO_SUCCESS,
+        photos
+    } as const
+}
+
+
+
 
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
@@ -120,6 +133,14 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0)
         dispatch(setStatus(status))
+}
+
+export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
+    const response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
+        console.log(response.data.data.photos)
+    }
 }
 
 
