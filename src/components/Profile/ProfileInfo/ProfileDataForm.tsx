@@ -14,7 +14,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
     const formik = useFormik({
         initialValues: {
             fullName: '',
-            password: '',
+            lookingForAJob: false,
             rememberMe: false
         },
         onSubmit: (values, {setStatus}) => {
@@ -40,7 +40,14 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                     </div>
                     </div>
                     <div>
-                        <b>Looking for a job</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}
+                        <b>Looking for a job</b>: <div>
+                        <input
+                            type={'checkbox'}
+                            name="lookingForAJob"
+                            onChange={formik.handleChange}
+                            checked={formik.values.lookingForAJob}
+                        />
+                    </div>
                     </div>
                     {props.profile.lookingForAJob &&
                         <div>
