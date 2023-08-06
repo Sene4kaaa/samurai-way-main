@@ -48,6 +48,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     <div>
                         <b>About me</b>: {props.profile.aboutMe}
                     </div>
+                    <div>
+                        <b>Contacts</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}
+                    </div>
                 </div>
 
 
