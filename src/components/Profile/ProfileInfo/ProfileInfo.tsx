@@ -4,6 +4,7 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileContactsPropsType, ProfileType} from "../../../redux/profile-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import UserAvatar from "../../../assets/images/UserAvatar.png";
+import {ProfileData} from "./ProfileData";
 
 
 type ProfileInfoPropsType = {
@@ -33,30 +34,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     : UserAvatar} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
 
-                <div>
-                    <div>
-                        <b>Full name</b>: {props.profile.fullNam}
-                    </div>
-                    <div>
-                        <b>Looking for a job</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}
-                    </div>
-                    {props.profile.lookingForAJob &&
-                        <div>
-                            <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
-                        </div>
-                    }
-                    <div>
-                        <b>About me</b>: {props.profile.aboutMe}
-                    </div>
-                    <div>
-                        <b>Contacts</b>: {
-                        Object.keys(props.profile.contacts).map(key => {
-                            const value: string = props.profile.contacts[key as keyof ProfileContactsPropsType]
-                            return <Contact key={key} contactTitle={key} contactValue={value}/>
-                        })
-                    }
-                    </div>
-                </div>
+                <ProfileData profile={props.profile}/>
 
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
@@ -64,14 +42,6 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     )
 }
 
-
-type ContactPropsType = {
-    contactTitle: string
-    contactValue: string
-}
-const Contact = (props: ContactPropsType) => {
-    return <div className={s.contact}><b>{props.contactTitle}</b>: {props.contactValue}</div>
-}
 
 
 export default ProfileInfo;
