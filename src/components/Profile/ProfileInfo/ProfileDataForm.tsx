@@ -15,7 +15,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
         initialValues: {
             fullName: '',
             lookingForAJob: false,
-            rememberMe: false
+            MyProfessionalSkills: ''
         },
         onSubmit: (values, {setStatus}) => {
             formik.resetForm();
@@ -50,7 +50,12 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                     </div>
                     </div>
                     <div>
-                        <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
+                        <b>My professional skills</b>: <div>
+                        <input
+                            placeholder={'My professional skills'}
+                            {...formik.getFieldProps('MyProfessionalSkills')}
+                        />
+                    </div>
                     </div>
                     <div>
                         <b>About me</b>: {props.profile.aboutMe}
