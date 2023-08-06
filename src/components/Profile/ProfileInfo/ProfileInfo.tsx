@@ -1,10 +1,11 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileContactsPropsType, ProfileType} from "../../../redux/profile-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import UserAvatar from "../../../assets/images/UserAvatar.png";
 import {ProfileData} from "./ProfileData";
+import {ProfileDataForm} from "./ProfileDataForm";
 
 
 type ProfileInfoPropsType = {
@@ -16,6 +17,9 @@ type ProfileInfoPropsType = {
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
+
+    let [editMode, setEditMode] = useState(false)
+
     if (!props.profile) {
         return <Preloader/>
     }
@@ -34,14 +38,16 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     : UserAvatar} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
 
-                <ProfileData profile={props.profile}/>
+                {editMode ? <ProfileDataForm profile={props.profile}/> :
+                    <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
+                        setEditMode(true)
+                    }}/>}
 
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
 }
-
 
 
 export default ProfileInfo;

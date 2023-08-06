@@ -4,11 +4,16 @@ import React from "react";
 
 type ProfileDataPropsType = {
     profile: ProfileType
+    isOwner: boolean
+    goToEditMode: (event: React.MouseEvent) => void
 }
 
 export const ProfileData = (props: ProfileDataPropsType) => {
     return (
         <div>
+            {props.isOwner && <div>
+                <button onClick={props.goToEditMode}>edit</button>
+            </div>}
             <div>
                 <b>Full name</b>: {props.profile.fullNam}
             </div>
