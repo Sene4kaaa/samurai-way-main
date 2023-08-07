@@ -17,7 +17,8 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             MyProfessionalSkills: '',
             AboutMe: ''
         },
-        onSubmit: (values, {setStatus}) => {
+        onSubmit: (values) => {
+            console.log(values.fullName, values.lookingForAJob, values.MyProfessionalSkills, values.AboutMe)
             formik.resetForm();
         },
     });
@@ -27,8 +28,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             <FormikProvider value={formik}>
                 <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <button onClick={() => {
-                        }}>save
+                        <button type="submit">save
                         </button>
                     </div>
                     <div>
