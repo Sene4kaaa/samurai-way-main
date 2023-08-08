@@ -7,13 +7,16 @@ import {Redirect} from "react-router-dom";
 import s from "./Login.module.css"
 
 
+
+
 type ErrorType = {
     email?: string,
     password?: string
 }
 
 type LoginPropsType = {
-    isAuth: boolean
+    isAuth: boolean,
+    captchaUrl: undefined | string
 }
 
 const Login = (props: LoginPropsType) => {
@@ -85,6 +88,7 @@ const Login = (props: LoginPropsType) => {
                 </div>
                 {formik.status && <div className={s.formSummaryError}>{formik.status}</div>}
                 <button type="submit">Submit</button>
+                {formik.errors && <img src={props.captchaUrl}/> }
             </form>
         </FormikProvider>
     </div>
@@ -92,12 +96,13 @@ const Login = (props: LoginPropsType) => {
 
 type MapStatePropsType = {
     isAuth: boolean
-    captchaUrl: null | string
+    captchaUrl: undefined | string
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl
+
 })
 
 export default connect(mapStateToProps, {loginTC: login})(Login)

@@ -12,7 +12,7 @@ let initialState: InitialStateType = {
     email: null,
     login: null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: undefined
 
 }
 
@@ -21,17 +21,17 @@ export type InitialStateType = {
     email: null | string,
     login: null | string,
     isAuth: boolean,
-    captchaUrl: null | string,
+    captchaUrl: undefined | string,
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA :
+        case GET_CAPTCHA_URL_SUCCESS :
             return {
                 ...state,
                 ...action.payload,
             }
-
         default:
             return state
     }
@@ -66,7 +66,7 @@ export const login = (email: string, password: string, rememberMe: boolean, setS
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
     } else {
-        if (response.data.resultCode === 10){
+        if (response.data.resultCode === 10) {
             dispatch(getCaptchaUrl())
         }
         setStatus(response.data.messages[0])
