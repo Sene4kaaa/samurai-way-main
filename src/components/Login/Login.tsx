@@ -16,7 +16,7 @@ type ErrorType = {
 
 type LoginPropsType = {
     isAuth: boolean,
-    captchaUrl: undefined | string
+    captchaUrl: null | string
 }
 
 const Login = (props: LoginPropsType) => {
@@ -88,7 +88,7 @@ const Login = (props: LoginPropsType) => {
                 </div>
                 {formik.status && <div className={s.formSummaryError}>{formik.status}</div>}
                 <button type="submit">Submit</button>
-                {formik.errors && <img src={props.captchaUrl}/> }
+                {formik.errors && props.captchaUrl &&  <img src={props.captchaUrl }/> }
             </form>
         </FormikProvider>
     </div>
@@ -96,7 +96,7 @@ const Login = (props: LoginPropsType) => {
 
 type MapStatePropsType = {
     isAuth: boolean
-    captchaUrl: undefined | string
+    captchaUrl: null | string
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
