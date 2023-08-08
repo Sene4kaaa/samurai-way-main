@@ -9,6 +9,7 @@ export type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (photoFile: File) => void
+    saveProfile: (profile: any) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -16,7 +17,8 @@ const Profile = (props: ProfilePropsType) => {
         <div>
             <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status}
                          updateStatus={props.updateStatus}
-                         savePhoto={props.savePhoto}/>
+                         savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}/>
             <MyPostsContainer/>
         </div>
     )

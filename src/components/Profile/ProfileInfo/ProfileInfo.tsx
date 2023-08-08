@@ -14,6 +14,7 @@ type ProfileInfoPropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (photoFile: File) => void
+    saveProfile: (profile: any) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -38,7 +39,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     : UserAvatar} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
 
-                {editMode ? <ProfileDataForm profile={props.profile}/> :
+                {editMode ? <ProfileDataForm profile={props.profile} saveProfile={props.saveProfile}/> :
                     <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}

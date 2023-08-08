@@ -5,6 +5,7 @@ import {FormikProvider, useFormik} from "formik";
 
 type ProfileDataFormPropsType = {
     profile: ProfileType
+    saveProfile: (profile: any)=> void
 }
 
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {

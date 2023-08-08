@@ -7,7 +7,7 @@ import {
     getUserProfile,
     ProfilePhotosPropsType,
     ProfileType,
-    savePhoto,
+    savePhoto, saveProfile,
     updateStatus
 } from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -31,6 +31,7 @@ type MapDispatchToPropsType = {
     getStatusTC: (userId: string) => void
     updateStatusTC: (status: string) => void
     savePhotoTC: (photoFile: File) => void
+    saveProfileTC: (profile: any) => void
 }
 
 interface TimerSnapshot {
@@ -73,7 +74,8 @@ class ProfileContainer extends React.Component<PropsType, {}> {
                      profile={this.props.profile}
                      status={this.props.status}
                      updateStatus={this.props.updateStatusTC}
-                     savePhoto={this.props.savePhotoTC}/>
+                     savePhoto={this.props.savePhotoTC}
+                     saveProfile={this.props.saveProfileTC}/>
         ) : null
     }
 }
@@ -91,7 +93,8 @@ export default compose<React.ComponentType>(
         getUserProfileTC: getUserProfile,
         getStatusTC: getStatus,
         updateStatusTC: updateStatus,
-        savePhotoTC: savePhoto
+        savePhotoTC: savePhoto,
+        saveProfileTC: saveProfile
     }),
     withRouter,
     withAuthRedirect
