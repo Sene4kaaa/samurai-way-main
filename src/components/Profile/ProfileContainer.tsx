@@ -6,7 +6,7 @@ import {
     getStatus,
     getUserProfile,
     ProfilePhotosPropsType,
-    ProfileType,
+    ProfileType, ProfileUpdateDataType,
     savePhoto, saveProfile,
     updateStatus
 } from "../../redux/profile-reducer";

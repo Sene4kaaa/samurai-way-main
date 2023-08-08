@@ -1,14 +1,17 @@
-import {ProfileType} from "../../../redux/profile-reducer";
+import {ProfileType, ProfileUpdateDataType, saveProfile} from "../../../redux/profile-reducer";
 import React from "react";
 import {FormikProvider, useFormik} from "formik";
+import {useDispatch} from "react-redux";
 
 
 type ProfileDataFormPropsType = {
     profile: ProfileType
-    saveProfile: (profile: any)=> void
+    saveProfile: (profile: any) => void
 }
 
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
+
+    const dispatch = useDispatch()
 
 
     const formik = useFormik({
@@ -19,7 +22,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             AboutMe: ''
         },
         onSubmit: (values) => {
-            console.log(values.fullName, values.lookingForAJob, values.MyProfessionalSkills, values.AboutMe)
+           dispatch(saveProfile(values))
             formik.resetForm();
         },
     });

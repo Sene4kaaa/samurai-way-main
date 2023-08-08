@@ -1,6 +1,7 @@
 import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {AppThunk} from "./redux-store";
 
 
 const ADD_POST = 'profile/ADD-POST'
@@ -39,6 +40,26 @@ export type ProfileContactsPropsType = {
 export type ProfilePhotosPropsType = {
     small: string,
     large: string,
+}
+
+export type ProfileUpdateDataType = {
+    userId?: string
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?: string
+    contacts?: ProfileUpdateContactsType
+
+}
+
+export type ProfileUpdateContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
 }
 
 const initialState = {
@@ -116,23 +137,23 @@ export const savePhotoSuccess = (photoFile: ProfilePhotosPropsType) => {
 }
 
 
-export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
+export const getUserProfile = (userId: string): AppThunk => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data))
 }
 
-export const getStatus = (userId: string) => async (dispatch: Dispatch) => {
+export const getStatus = (userId: string): AppThunk => async (dispatch: Dispatch) => {
     const response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data))
 }
 
-export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+export const updateStatus = (status: string): AppThunk => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0)
         dispatch(setStatus(status))
 }
 
-export const savePhoto = (photoFile: File) => async (dispatch: Dispatch) => {
+export const savePhoto = (photoFile: File): AppThunk => async (dispatch: Dispatch) => {
     const response = await profileAPI.savePhoto(photoFile)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
@@ -149,22 +170,3 @@ export const saveProfile = (profile: any) => async (dispatch: Dispatch) => {
 }
 
 
-export type ProfileUpdateDataType = {
-    userId: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ProfileUpdateContactsType
-
-}
-
-export type ProfileUpdateContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
