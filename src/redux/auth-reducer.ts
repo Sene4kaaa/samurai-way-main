@@ -1,16 +1,18 @@
 import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
-import {authAPI} from "../api/api";
+import {authAPI, securityAPI} from "../api/api";
 import {AppThunk} from "./redux-store";
 
 
 const SET_USER_DATA = 'auth/SET_USER_DATA'
+const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS'
 
 let initialState: InitialStateType = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 
 }
 
@@ -18,7 +20,8 @@ export type InitialStateType = {
     userId: null | number,
     email: null | string,
     login: null | string,
-    isAuth: boolean
+    isAuth: boolean,
+    captchaUrl: null | string,
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -42,6 +45,13 @@ export const setAuthUserData = (userId: number | null, email: string | null, log
     } as const
 }
 
+export const getCaptchaUrlSuccess = (captchaUrl: string) => {
+    return {
+        type: GET_CAPTCHA_URL_SUCCESS,
+        payload: {captchaUrl}
+    } as const
+}
+
 export const getAuthUserData = (): AppThunk => async (dispatch: Dispatch) => {
     const response = await authAPI.me()
     if (response.data.resultCode === 0) {
@@ -58,6 +68,12 @@ export const login = (email: string, password: string, rememberMe: boolean, setS
     } else if (response.data.resultCode !== 0) {
         setStatus(response.data.messages[0])
     }
+}
+
+export const getCaptchaUrl = (): AppThunk => async (dispatch) => {
+    const response = await securityAPI.getCaptcha()
+    const captchaUrl = response.data.url
+    dispatch(getCaptchaUrlSuccess(captchaUrl))
 }
 
 export const logout = (): AppThunk => async (dispatch: Dispatch) => {

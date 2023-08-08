@@ -23,7 +23,7 @@ import {
     toggleIsFetching,
     acceptUnfollow
 } from "./users-reducer";
-import {setAuthUserData} from "./auth-reducer";
+import {getCaptchaUrlSuccess, setAuthUserData} from "./auth-reducer";
 import {initializedSuccess} from "./app-reducer";
 
 export type ActionsTypes =
@@ -43,6 +43,7 @@ export type ActionsTypes =
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
     | ReturnType<typeof saveProfileSuccess>
+    | ReturnType<typeof getCaptchaUrlSuccess>
 
 
 /*
