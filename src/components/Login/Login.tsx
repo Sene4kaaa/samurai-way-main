@@ -88,7 +88,7 @@ const Login = (props: LoginPropsType) => {
                 </div>
                 {formik.status && <div className={s.formSummaryError}>{formik.status}</div>}
                 <button type="submit">Submit</button>
-                {formik.errors && props.captchaUrl &&  <img src={props.captchaUrl }/> }
+                {formik.errors && <img src={props.captchaUrl || undefined}/> }
             </form>
         </FormikProvider>
     </div>
