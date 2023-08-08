@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 
-
 const ADD_POST = 'profile/ADD-POST'
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
@@ -117,8 +116,6 @@ export const savePhotoSuccess = (photoFile: ProfilePhotosPropsType) => {
 }
 
 
-
-
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
     dispatch(setUserProfile(response.data))
@@ -139,16 +136,35 @@ export const savePhoto = (photoFile: File) => async (dispatch: Dispatch) => {
     const response = await profileAPI.savePhoto(photoFile)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
-        console.log(response.data.data.photos)
+
     }
 }
 
 export const saveProfile = (profile: any) => async (dispatch: Dispatch) => {
-    const response = await profileAPI.savePhoto(profile)
+    const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
-        console.log(response.data.data.photos)
+
     }
 }
 
 
+export type ProfileUpdateDataType = {
+    userId: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ProfileUpdateContactsType
+
+}
+
+export type ProfileUpdateContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
