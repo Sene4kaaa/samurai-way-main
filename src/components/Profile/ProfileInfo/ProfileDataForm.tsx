@@ -16,11 +16,12 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
 
     const formik = useFormik({
         initialValues: {
-            fullName: '',
-            lookingForAJob: false,
-            lookingForAJobDescription: '',
-            aboutMe: ''
+            fullName: props.profile.fullName,
+            lookingForAJob: props.profile.lookingForAJob,
+            lookingForAJobDescription: props.profile.lookingForAJobDescription,
+            aboutMe: props.profile.aboutMe
         },
+
         onSubmit: (values) => {
            dispatch(saveProfile(values))
             formik.resetForm();
