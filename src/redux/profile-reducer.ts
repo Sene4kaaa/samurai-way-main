@@ -48,7 +48,7 @@ export type ProfileUpdateDataType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    contacts?: ProfileUpdateContactsType
+    contacts: ProfileUpdateContactsType
     aboutMe: string
 
 }

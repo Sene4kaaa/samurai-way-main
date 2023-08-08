@@ -12,7 +12,7 @@ import {useDispatch} from "react-redux";
 type ProfileDataFormPropsType = {
     profile: ProfileType
     saveProfile: (profile: ProfileUpdateDataType) => void
-    exitEditMode:  (event: React.MouseEvent) => void
+    exitEditMode: (event: React.MouseEvent) => void
 }
 
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
@@ -25,11 +25,12 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             fullName: props.profile.fullName,
             lookingForAJob: props.profile.lookingForAJob,
             lookingForAJobDescription: props.profile.lookingForAJobDescription,
-            aboutMe: props.profile.aboutMe
+            aboutMe: props.profile.aboutMe,
+            contacts: props.profile.contacts
         },
 
         onSubmit: (values) => {
-           dispatch(saveProfile(values))
+            dispatch(saveProfile(values))
             dispatch(props.exitEditMode)
             formik.resetForm();
         },
@@ -40,7 +41,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             <FormikProvider value={formik}>
                 <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <button type="submit" >save
+                        <button type="submit">save
                         </button>
                     </div>
                     <div>
@@ -76,18 +77,6 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                             {...formik.getFieldProps('aboutMe')}
                         />
                     </div>
-                    </div>
-                    <div>
-                        <b>Contacts</b>: {
-                        Object.keys(props.profile.contacts).map(key => {
-                            return <div>
-                                <b>{key}:   <input
-                                    placeholder={key}
-                                    {...formik.getFieldProps('contacts' + key)}
-                                /></b>
-                            </div>
-                        })
-                    }
                     </div>
                 </form>
             </FormikProvider>
