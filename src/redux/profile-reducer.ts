@@ -49,6 +49,7 @@ export type ProfileUpdateDataType = {
     lookingForAJobDescription: string
     fullName: string
     contacts?: ProfileUpdateContactsType
+    aboutMe: string
 
 }
 
@@ -103,7 +104,7 @@ export const profileReducer = (state: initialStateType = initialState, action: A
         case SAVE_PHOTO_SUCCESS :
             return {...state, profile: {...state.profile, photos: action.photoFile} as ProfileType}
         case SAVE_PROFILE_SUCCESS :
-            return {...state, profile: {...state.profile, profile: action.profile} as ProfileType}
+            return {...state, profile: {...state.profile, ...action.profile} as ProfileType}
         default:
             return state
     }
@@ -139,7 +140,7 @@ export const savePhotoSuccess = (photoFile: ProfilePhotosPropsType) => {
     } as const
 }
 
-export const saveProfileSuccess = (profile: any) => {
+export const saveProfileSuccess = (profile: ProfileUpdateDataType) => {
     return {
         type: SAVE_PROFILE_SUCCESS,
         profile
@@ -171,11 +172,13 @@ export const savePhoto = (photoFile: File): AppThunk => async (dispatch: Dispatc
     }
 }
 
-export const saveProfile = (profile: ProfileUpdateDataType) => async (dispatch: Dispatch) => {
+export const saveProfile = (profile: ProfileUpdateDataType): AppThunk => async (dispatch: Dispatch, getState) => {
+    const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        dispatch(saveProfileSuccess(response.data.data.profile))
-
+        dispatch(saveProfileSuccess(profile))
+        // dispatch(getUserProfile(userId))
+        //  dispatch(getUserProfile(userId))
     }
 }
 
