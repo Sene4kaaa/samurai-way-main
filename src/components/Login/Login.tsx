@@ -7,8 +7,6 @@ import {Redirect} from "react-router-dom";
 import s from "./Login.module.css"
 
 
-
-
 type ErrorType = {
     email?: string,
     password?: string
@@ -27,7 +25,8 @@ const Login = (props: LoginPropsType) => {
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captcha: ''
         },
         validate: (values) => {
             const errors: ErrorType = {};
@@ -47,7 +46,7 @@ const Login = (props: LoginPropsType) => {
             return errors;
         },
         onSubmit: (values, {setStatus}) => {
-            dispatch(login(values.email, values.password, values.rememberMe, setStatus))
+            dispatch(login(values.email, values.password, values.rememberMe, setStatus,values.captcha))
             formik.resetForm();
         },
     });
@@ -88,7 +87,13 @@ const Login = (props: LoginPropsType) => {
                 </div>
                 {formik.status && <div className={s.formSummaryError}>{formik.status}</div>}
                 <button type="submit">Submit</button>
-                {formik.errors && <img src={props.captchaUrl || undefined}/> }
+                {props.captchaUrl && <img src={props.captchaUrl || undefined}/>}
+                {props.captchaUrl && <div>
+                    <input
+                        placeholder={'captcha'}
+                        {...formik.getFieldProps('captcha')}
+                    />
+                </div>}
             </form>
         </FormikProvider>
     </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileType, ProfileUpdateDataType} from "../redux/profile-reducer";
+import { ProfileUpdateDataType} from "../redux/profile-reducer";
 
 
 const instance = axios.create({
@@ -67,9 +67,9 @@ export const authAPI = {
         return instance
             .get(`auth/me`)
     },
-    login(email: string, password: string, rememberMe = false) {
+    login(email: string, password: string, rememberMe = false, captcha: string) {
         return instance
-            .post(`auth/login`, {email, password, rememberMe})
+            .post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {
         return instance
