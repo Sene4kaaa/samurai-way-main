@@ -92,10 +92,12 @@ const Login = (props: LoginPropsType) => {
 
 type MapStatePropsType = {
     isAuth: boolean
+    captchaUrl: null | string
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, {loginTC: login})(Login)
