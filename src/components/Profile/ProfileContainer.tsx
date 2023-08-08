@@ -5,7 +5,6 @@ import {AppStateType} from "../../redux/redux-store";
 import {
     getStatus,
     getUserProfile,
-    ProfilePhotosPropsType,
     ProfileType, ProfileUpdateDataType,
     savePhoto, saveProfile,
     updateStatus

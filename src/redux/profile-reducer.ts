@@ -22,7 +22,7 @@ export type ProfileType = {
     contacts: ProfileContactsPropsType,
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
-    fullNam: string,
+    fullName: string,
     userId: number,
     photos: ProfilePhotosPropsType
 }

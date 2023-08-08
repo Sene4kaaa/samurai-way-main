@@ -15,7 +15,7 @@ export const ProfileData = (props: ProfileDataPropsType) => {
                 <button onClick={props.goToEditMode}>edit</button>
             </div>}
             <div>
-                <b>Full name</b>: {props.profile.fullNam}
+                <b>Full name</b>: {props.profile.fullName}
             </div>
             <div>
                 <b>Looking for a job</b>: {props.profile.lookingForAJob ? 'yes' : 'no'}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileUpdateDataType} from "../redux/profile-reducer";
+import {ProfileType, ProfileUpdateDataType} from "../redux/profile-reducer";
 
 
 const instance = axios.create({
