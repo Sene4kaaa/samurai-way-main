@@ -65,7 +65,10 @@ export const login = (email: string, password: string, rememberMe: boolean, setS
     const response = await authAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
-    } else if (response.data.resultCode !== 0) {
+    } else {
+        if (response.data.resultCode === 10){
+            dispatch(getCaptchaUrl())
+        }
         setStatus(response.data.messages[0])
     }
 }
