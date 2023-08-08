@@ -82,6 +82,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                         Object.keys(props.profile.contacts).map(key => {
                             return <div>
                                 <b>{key}:   <input
+                                    placeholder={key}
                                     {...formik.getFieldProps('contacts' + key)}
                                 /></b>
                             </div>
