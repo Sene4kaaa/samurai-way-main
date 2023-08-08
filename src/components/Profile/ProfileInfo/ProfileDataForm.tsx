@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 type ProfileDataFormPropsType = {
     profile: ProfileType
     saveProfile: (profile: ProfileUpdateDataType) => void
+    exitEditMode:  (event: React.MouseEvent) => void
 }
 
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
@@ -24,6 +25,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
 
         onSubmit: (values) => {
            dispatch(saveProfile(values))
+            dispatch(props.exitEditMode)
             formik.resetForm();
         },
     });
@@ -33,7 +35,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             <FormikProvider value={formik}>
                 <form onSubmit={formik.handleSubmit}>
                     <div>
-                        <button type="submit">save
+                        <button type="submit" >save
                         </button>
                     </div>
                     <div>

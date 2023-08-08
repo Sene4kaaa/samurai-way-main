@@ -39,7 +39,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     : UserAvatar} className={s.mainPhoto}/>
                 {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
 
-                {editMode ? <ProfileDataForm profile={props.profile} saveProfile={props.saveProfile}/> :
+                {editMode ? <ProfileDataForm profile={props.profile} saveProfile={props.saveProfile} exitEditMode={()=>{setEditMode(false)}}/> :
                     <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}
