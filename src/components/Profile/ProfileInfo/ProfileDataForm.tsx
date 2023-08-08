@@ -1,4 +1,9 @@
-import {ProfileType, ProfileUpdateDataType, saveProfile} from "../../../redux/profile-reducer";
+import {
+    ProfileContactsPropsType,
+    ProfileType,
+    ProfileUpdateDataType,
+    saveProfile
+} from "../../../redux/profile-reducer";
 import React from "react";
 import {FormikProvider, useFormik} from "formik";
 import {useDispatch} from "react-redux";
@@ -71,6 +76,17 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                             {...formik.getFieldProps('aboutMe')}
                         />
                     </div>
+                    </div>
+                    <div>
+                        <b>Contacts</b>: {
+                        Object.keys(props.profile.contacts).map(key => {
+                            return <div>
+                                <b>{key}:   <input
+                                    {...formik.getFieldProps('contacts' + key)}
+                                /></b>
+                            </div>
+                        })
+                    }
                     </div>
                 </form>
             </FormikProvider>
