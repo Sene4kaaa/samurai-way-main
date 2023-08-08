@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 
 type ProfileDataFormPropsType = {
     profile: ProfileType
-    saveProfile: (profile: any) => void
+    saveProfile: (profile: ProfileUpdateDataType) => void
 }
 
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
@@ -18,8 +18,8 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
         initialValues: {
             fullName: '',
             lookingForAJob: false,
-            MyProfessionalSkills: '',
-            AboutMe: ''
+            lookingForAJobDescription: '',
+            aboutMe: ''
         },
         onSubmit: (values) => {
            dispatch(saveProfile(values))
@@ -57,7 +57,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                         <b>My professional skills</b>: <div>
                         <input
                             placeholder={'My professional skills'}
-                            {...formik.getFieldProps('MyProfessionalSkills')}
+                            {...formik.getFieldProps('lookingForAJobDescription')}
                         />
                     </div>
                     </div>
@@ -65,7 +65,7 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
                         <b>About me</b>: <div>
                         <textarea
                             placeholder={'About me'}
-                            {...formik.getFieldProps('AboutMe')}
+                            {...formik.getFieldProps('aboutMe')}
                         />
                     </div>
                     </div>

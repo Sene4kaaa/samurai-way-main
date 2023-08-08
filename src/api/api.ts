@@ -56,7 +56,7 @@ export const profileAPI = {
                 }
             })
     },
-    saveProfile(profile: any) {
+    saveProfile(profile: ProfileUpdateDataType) {
         return instance
             .put('profile', profile)
     }

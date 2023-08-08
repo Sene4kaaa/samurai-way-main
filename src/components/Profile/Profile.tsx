@@ -9,7 +9,7 @@ export type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (photoFile: File) => void
-    saveProfile: (profile: any) => void
+    saveProfile: (profile: ProfileUpdateDataType) => void
 }
 
 const Profile = (props: ProfilePropsType) => {

@@ -9,6 +9,7 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 const SET_STATUS = 'profile/SET_STATUS'
 const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
+const SAVE_PROFILE_SUCCESS = 'profile/SAVE_PROFILE_SUCCESS'
 
 export type PostType = {
     id: number
@@ -44,9 +45,9 @@ export type ProfilePhotosPropsType = {
 
 export type ProfileUpdateDataType = {
     userId?: string
-    lookingForAJob?: boolean
-    lookingForAJobDescription?: string
-    fullName?: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
     contacts?: ProfileUpdateContactsType
 
 }
@@ -101,6 +102,8 @@ export const profileReducer = (state: initialStateType = initialState, action: A
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         case SAVE_PHOTO_SUCCESS :
             return {...state, profile: {...state.profile, photos: action.photoFile} as ProfileType}
+        case SAVE_PROFILE_SUCCESS :
+            return {...state, profile: {...state.profile, profile: action.profile} as ProfileType}
         default:
             return state
     }
@@ -136,6 +139,13 @@ export const savePhotoSuccess = (photoFile: ProfilePhotosPropsType) => {
     } as const
 }
 
+export const saveProfileSuccess = (profile: any) => {
+    return {
+        type: SAVE_PROFILE_SUCCESS,
+        profile
+    } as const
+}
+
 
 export const getUserProfile = (userId: string): AppThunk => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
@@ -161,10 +171,10 @@ export const savePhoto = (photoFile: File): AppThunk => async (dispatch: Dispatc
     }
 }
 
-export const saveProfile = (profile: any) => async (dispatch: Dispatch) => {
+export const saveProfile = (profile: ProfileUpdateDataType) => async (dispatch: Dispatch) => {
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccess(response.data.data.photos))
+        dispatch(saveProfileSuccess(response.data.data.profile))
 
     }
 }
