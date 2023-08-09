@@ -172,13 +172,10 @@ export const savePhoto = (photoFile: File): AppThunk => async (dispatch: Dispatc
     }
 }
 
-export const saveProfile = (profile: ProfileUpdateDataType): AppThunk => async (dispatch: Dispatch, getState) => {
-    const userId = getState().auth.userId
+export const saveProfile = (profile: ProfileUpdateDataType): AppThunk => async (dispatch: Dispatch) => {
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(saveProfileSuccess(profile))
-        // dispatch(getUserProfile(userId))
-        //  dispatch(getUserProfile(userId))
     }
 }
 
