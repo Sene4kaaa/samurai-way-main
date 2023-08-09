@@ -20,17 +20,11 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
 
+
 class App extends React.Component<AppPropsType> {
-    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
-        alert(promiseRejectionEvent)
-    }
 
     componentDidMount() {
         this.props.initializeApp()
-        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
-    }
-    componentWillUnmount() {
-        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -68,10 +62,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     initialized: state.app.initialized
 })
 
-export default compose<React.ComponentType>(
-    withRouter,
-    connect(mapStateToProps, {initializeApp}))(App);
-
 type MapStateToPropsType = {
     initialized: boolean
 }
@@ -81,3 +71,9 @@ type MapDispatchToProps = {
 }
 
 export type AppPropsType = MapStateToPropsType & MapDispatchToProps
+
+export default compose<React.ComponentType>(
+    withRouter,
+    connect(mapStateToProps, {initializeApp}))(App);
+
+
