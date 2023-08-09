@@ -1,10 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 
-type ProfileStatusWithHooksPropsType = {
-    status: string
-    updateStatus: (status: string) => void
-}
-
 
 export const ProfileStatusWithHooks = (props: ProfileStatusWithHooksPropsType) => {
 
@@ -28,7 +23,6 @@ export const ProfileStatusWithHooks = (props: ProfileStatusWithHooksPropsType) =
         setStatus(e.currentTarget.value)
     }
 
-
     return (
         <div>
             {!editMode &&
@@ -44,6 +38,11 @@ export const ProfileStatusWithHooks = (props: ProfileStatusWithHooksPropsType) =
             }
         </div>
     )
+}
+
+type ProfileStatusWithHooksPropsType = {
+    status: string
+    updateStatus: (status: string) => void
 }
 
 

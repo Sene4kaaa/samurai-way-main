@@ -2,11 +2,6 @@ import {ProfileContactsPropsType, ProfileType} from "../../../redux/profile-redu
 import s from "./ProfileInfo.module.css";
 import React from "react";
 
-type ProfileDataPropsType = {
-    profile: ProfileType
-    isOwner: boolean
-    goToEditMode: (event: React.MouseEvent) => void
-}
 
 export const ProfileData = (props: ProfileDataPropsType) => {
     return (
@@ -38,11 +33,17 @@ export const ProfileData = (props: ProfileDataPropsType) => {
     )
 }
 
+const Contact = (props: ContactPropsType) => {
+    return <div className={s.contact}><b>{props.contactTitle}</b>: {props.contactValue}</div>
+}
+
 type ContactPropsType = {
     contactTitle: string
     contactValue: string
 }
 
-const Contact = (props: ContactPropsType) => {
-    return <div className={s.contact}><b>{props.contactTitle}</b>: {props.contactValue}</div>
+type ProfileDataPropsType = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: (event: React.MouseEvent) => void
 }

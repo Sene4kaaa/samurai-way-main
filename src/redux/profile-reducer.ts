@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./actionsTypes";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {AppThunk} from "./redux-store";
@@ -11,59 +11,6 @@ const DELETE_POST = 'profile/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
 const SAVE_PROFILE_SUCCESS = 'profile/SAVE_PROFILE_SUCCESS'
 
-export type PostType = {
-    id: number
-    message: string
-    likesCounts: number
-}
-
-export type ProfileType = {
-    aboutMe: string,
-    contacts: ProfileContactsPropsType,
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string,
-    userId: number,
-    photos: ProfilePhotosPropsType
-}
-
-export type ProfileContactsPropsType = {
-    facebook: string,
-    website: string,
-    vk: string,
-    twitter: string,
-    instagram: string,
-    youtube: string,
-    github: string,
-    mainLink: string
-}
-
-export type ProfilePhotosPropsType = {
-    small: string,
-    large: string,
-}
-
-export type ProfileUpdateDataType = {
-    userId?: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ProfileUpdateContactsType
-    aboutMe: string
-
-}
-
-export type ProfileUpdateContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
-
 const initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCounts: 12},
@@ -74,8 +21,6 @@ const initialState = {
     profile: null as null | ProfileType,
     status: ''
 }
-
-export type initialStateType = typeof initialState
 
 export const profileReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
@@ -116,23 +61,27 @@ export const addPost = (newPostText: string) => {
         type: ADD_POST, newPostText
     } as const
 }
+
 export const deletePost = (postId: number) => {
     return {
         type: DELETE_POST, postId
     } as const
 }
+
 export const setUserProfile = (profile: ProfileType) => {
     return {
         type: SET_USER_PROFILE,
         profile
     } as const
 }
+
 export const setStatus = (status: string) => {
     return {
         type: SET_STATUS,
         status
     } as const
 }
+
 export const savePhotoSuccess = (photoFile: ProfilePhotosPropsType) => {
     return {
         type: SAVE_PHOTO_SUCCESS,
@@ -146,7 +95,6 @@ export const saveProfileSuccess = (profile: ProfileUpdateDataType) => {
         profile
     } as const
 }
-
 
 export const getUserProfile = (userId: string): AppThunk => async (dispatch: Dispatch) => {
     const response = await usersAPI.getProfile(userId)
@@ -178,5 +126,59 @@ export const saveProfile = (profile: ProfileUpdateDataType): AppThunk => async (
         dispatch(saveProfileSuccess(profile))
     }
 }
+
+export type PostType = {
+    id: number
+    message: string
+    likesCounts: number
+}
+
+export type ProfileType = {
+    aboutMe: string,
+    contacts: ProfileContactsPropsType,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    userId: number,
+    photos: ProfilePhotosPropsType
+}
+
+export type ProfileContactsPropsType = {
+    facebook: string,
+    website: string,
+    vk: string,
+    twitter: string,
+    instagram: string,
+    youtube: string,
+    github: string,
+    mainLink: string
+}
+
+export type ProfilePhotosPropsType = {
+    small: string,
+    large: string,
+}
+
+export type ProfileUpdateDataType = {
+    userId?: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ProfileUpdateContactsType
+    aboutMe: string
+}
+
+export type ProfileUpdateContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+
+export type initialStateType = typeof initialState
 
 

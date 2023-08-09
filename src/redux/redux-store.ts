@@ -6,7 +6,7 @@ import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./actionsTypes";
 import {appReducer} from "./app-reducer";
 
 
@@ -18,7 +18,6 @@ export const rootReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
     app: appReducer,
-
 })
 
 declare global {

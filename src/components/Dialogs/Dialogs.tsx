@@ -7,31 +7,6 @@ import {useDispatch} from "react-redux";
 import {sendMessage} from "../../redux/dialogs-reducer";
 
 
-type MessagesType = {
-    id: number
-    message: string
-}
-
-type DialogsType = {
-    id: number
-    name: string
-}
-
-type DialogPageType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-}
-
-type DialogsPropsType = {
-    dialogPage: DialogPageType
-    onSendMessageClick: (values: string) => void
-}
-
-type ErrorType = {
-    message?: string,
-}
-
-
 export const Dialogs = (props: DialogsPropsType) => {
 
     const dispatch = useDispatch()
@@ -60,7 +35,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     let dialogsElements = props.dialogPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = props.dialogPage.messages.map(m => <Message message={m.message} key={m.id}/>)
 
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -74,9 +48,6 @@ export const Dialogs = (props: DialogsPropsType) => {
                 <form onSubmit={formik.handleSubmit}>
                     <textarea
                         placeholder={'Enter you text'}
-                        // name="message"
-                        // onChange={formik.handleChange}
-                        // value={formik.values.message}
                         {...formik.getFieldProps('message')}
                     />
                     {formik.touched.message && formik.errors.message &&
@@ -86,5 +57,29 @@ export const Dialogs = (props: DialogsPropsType) => {
             </FormikProvider>
         </div>
     )
+}
+
+type MessagesType = {
+    id: number
+    message: string
+}
+
+type DialogsType = {
+    id: number
+    name: string
+}
+
+type DialogPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+}
+
+type DialogsPropsType = {
+    dialogPage: DialogPageType
+    onSendMessageClick: (values: string) => void
+}
+
+type ErrorType = {
+    message?: string,
 }
 

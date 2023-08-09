@@ -8,15 +8,6 @@ import {ProfileData} from "./ProfileData";
 import {ProfileDataForm} from "./ProfileDataForm";
 
 
-type ProfileInfoPropsType = {
-    isOwner: boolean
-    profile: ProfileType
-    status: string
-    updateStatus: (status: string) => void
-    savePhoto: (photoFile: File) => void
-    saveProfile: (profile: ProfileUpdateDataType) => void
-}
-
 const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     let [editMode, setEditMode] = useState(false)
@@ -43,12 +34,19 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                     <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}
-
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
 }
 
+type ProfileInfoPropsType = {
+    isOwner: boolean
+    profile: ProfileType
+    status: string
+    updateStatus: (status: string) => void
+    savePhoto: (photoFile: File) => void
+    saveProfile: (profile: ProfileUpdateDataType) => void
+}
 
 export default ProfileInfo;

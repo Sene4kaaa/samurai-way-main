@@ -20,22 +20,6 @@ import {
 } from "../../redux/users-selectors";
 
 
-type MapStatePropsType = {
-    users: UserType[]
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: number[]
-}
-
-type MapDispatchToPropsType = {
-    followTC: (userId: number) => void
-    unfollowTC: (userId: number) => void
-    setCurrentPage: (pageNumber: number) => void
-    getUsersTC: (currentPage: number, pageSize: number) => void
-}
-
 export type UsersAPIPropsType = MapStatePropsType & MapDispatchToPropsType
 
 class UsersContainerAPI extends React.Component<UsersAPIPropsType, {}> {
@@ -74,6 +58,22 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
     }
+}
+
+type MapStatePropsType = {
+    users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: number[]
+}
+
+type MapDispatchToPropsType = {
+    followTC: (userId: number) => void
+    unfollowTC: (userId: number) => void
+    setCurrentPage: (pageNumber: number) => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 
 export default compose<React.ComponentType>(

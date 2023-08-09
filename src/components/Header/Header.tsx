@@ -2,11 +2,6 @@ import React from "react";
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
-type HeaderPropsType = {
-    isAuth: boolean,
-    login: null | string
-    logoutTC: () => void
-}
 
 const Header = (props: HeaderPropsType) => {
 
@@ -25,4 +20,11 @@ const Header = (props: HeaderPropsType) => {
 
     </header>
 }
+
+type HeaderPropsType = {
+    isAuth: boolean,
+    login: null | string
+    logoutTC: () => void
+}
+
 export default Header;

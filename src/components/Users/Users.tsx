@@ -4,17 +4,6 @@ import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
 
 
-type UsersPropsType = {
-    totalUsersCount: number
-    pageSize: number
-    currentPage: number
-    onPageChanged: (p: number) => void
-    users: UserType[]
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
-    followingInProgress: number[]
-}
-
 export const Users = (props: UsersPropsType) => {
     return <div>
         <Paginator totalItemsCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
@@ -29,4 +18,15 @@ export const Users = (props: UsersPropsType) => {
             />)
         }
     </div>
+}
+
+type UsersPropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanged: (p: number) => void
+    users: UserType[]
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
+    followingInProgress: number[]
 }

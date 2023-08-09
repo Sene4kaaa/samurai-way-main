@@ -5,13 +5,6 @@ import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 
 
-type UserPropsType = {
-    user: UserType
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
-    followingInProgress: number[]
-}
-
 export const User = (props: UserPropsType) => {
     return (
         <div>
@@ -47,4 +40,11 @@ export const User = (props: UserPropsType) => {
                     </span>
                 </span>
         </div>)
+}
+
+type UserPropsType = {
+    user: UserType
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
+    followingInProgress: number[]
 }

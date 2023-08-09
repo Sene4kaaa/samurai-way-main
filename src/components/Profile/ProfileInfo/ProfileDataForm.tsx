@@ -1,5 +1,4 @@
 import {
-    ProfileContactsPropsType,
     ProfileType,
     ProfileUpdateDataType,
     saveProfile
@@ -9,16 +8,9 @@ import {FormikProvider, useFormik} from "formik";
 import {useDispatch} from "react-redux";
 
 
-type ProfileDataFormPropsType = {
-    profile: ProfileType
-    saveProfile: (profile: ProfileUpdateDataType) => void
-    exitEditMode: (event: React.MouseEvent) => void
-}
-
 export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
 
     const dispatch = useDispatch()
-
 
     const formik = useFormik({
         initialValues: {
@@ -82,6 +74,12 @@ export const ProfileDataForm = (props: ProfileDataFormPropsType) => {
             </FormikProvider>
         </div>
     )
+}
+
+type ProfileDataFormPropsType = {
+    profile: ProfileType
+    saveProfile: (profile: ProfileUpdateDataType) => void
+    exitEditMode: (event: React.MouseEvent) => void
 }
 
 

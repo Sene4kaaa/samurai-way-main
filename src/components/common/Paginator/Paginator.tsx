@@ -3,14 +3,6 @@ import styles from "./Paginator.module.css";
 import cn from "classnames"
 
 
-type PaginatorPropsType = {
-    totalItemsCount: number
-    pageSize: number
-    currentPage: number
-    portionSize: number
-    onPageChanged: (p: number) => void
-}
-
 export const Paginator = (props: PaginatorPropsType) => {
 
     let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
@@ -24,7 +16,6 @@ export const Paginator = (props: PaginatorPropsType) => {
     let [portionNumber, setPortionNumber] = useState(1)
     let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1
     let rightPortionNumber = portionNumber * props.portionSize
-
 
     return <div className={cn(styles.paginator)}>
         {portionNumber > 1 &&
@@ -49,4 +40,12 @@ export const Paginator = (props: PaginatorPropsType) => {
                 setPortionNumber(portionNumber + 1)
             }}>NEXT</button>}
     </div>
+}
+
+type PaginatorPropsType = {
+    totalItemsCount: number
+    pageSize: number
+    currentPage: number
+    portionSize: number
+    onPageChanged: (p: number) => void
 }

@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./actionsTypes";
 import {Dispatch} from "redux";
 import {authAPI, securityAPI} from "../api/api";
 import {AppThunk} from "./redux-store";
@@ -14,14 +14,6 @@ let initialState: InitialStateType = {
     isAuth: false,
     captchaUrl: null
 
-}
-
-export type InitialStateType = {
-    userId: null | number,
-    email: null | string,
-    login: null | string,
-    isAuth: boolean,
-    captchaUrl: null | string,
 }
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -84,4 +76,12 @@ export const logout = (): AppThunk => async (dispatch: Dispatch) => {
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
     }
+}
+
+export type InitialStateType = {
+    userId: null | number,
+    email: null | string,
+    login: null | string,
+    isAuth: boolean,
+    captchaUrl: null | string,
 }

@@ -7,16 +7,6 @@ import {Redirect} from "react-router-dom";
 import s from "./Login.module.css"
 
 
-type ErrorType = {
-    email?: string,
-    password?: string
-}
-
-type LoginPropsType = {
-    isAuth: boolean,
-    captchaUrl: null | string
-}
-
 const Login = (props: LoginPropsType) => {
 
     const dispatch = useDispatch()
@@ -46,7 +36,7 @@ const Login = (props: LoginPropsType) => {
             return errors;
         },
         onSubmit: (values, {setStatus}) => {
-            dispatch(login(values.email, values.password, values.rememberMe, setStatus,values.captcha))
+            dispatch(login(values.email, values.password, values.rememberMe, setStatus, values.captcha))
             formik.resetForm();
         },
     });
@@ -107,7 +97,16 @@ type MapStatePropsType = {
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl
-
 })
+
+type ErrorType = {
+    email?: string,
+    password?: string
+}
+
+type LoginPropsType = {
+    isAuth: boolean,
+    captchaUrl: null | string
+}
 
 export default connect(mapStateToProps, {loginTC: login})(Login)

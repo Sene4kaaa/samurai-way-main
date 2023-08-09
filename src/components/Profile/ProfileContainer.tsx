@@ -32,7 +32,6 @@ class ProfileContainer extends React.Component<PropsType, {}> {
         this.refreshProfile()
     }
 
-
     componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: Snapshot) {
         if (this.props.match.params.userId != prevProps.match.params.userId)
             this.refreshProfile()
@@ -57,18 +56,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     authorizedUserId: state.auth.userId,
     isAuth: state.auth.isAuth
 })
-
-export default compose<React.ComponentType>(
-    connect(mapStateToProps, {
-        getUserProfileTC: getUserProfile,
-        getStatusTC: getStatus,
-        updateStatusTC: updateStatus,
-        savePhotoTC: savePhoto,
-        saveProfileTC: saveProfile
-    }),
-    withRouter,
-    withAuthRedirect
-)(ProfileContainer)
 
 type PathParamsType = {
     userId: string
@@ -97,3 +84,18 @@ type Snapshot = Readonly<TimerSnapshot>
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToPropsType
 
 type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {
+        getUserProfileTC: getUserProfile,
+        getStatusTC: getStatus,
+        updateStatusTC: updateStatus,
+        savePhotoTC: savePhoto,
+        saveProfileTC: saveProfile
+    }),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)
+
+
+
