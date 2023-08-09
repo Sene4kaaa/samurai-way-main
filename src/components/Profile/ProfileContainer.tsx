@@ -14,34 +14,6 @@ import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-type PathParamsType = {
-    userId: string
-}
-
-type MapStatePropsType = {
-    profile: ProfileType | null
-    status: string
-    authorizedUserId: any
-    isAuth: boolean
-}
-
-type MapDispatchToPropsType = {
-    getUserProfileTC: (userId: string) => void
-    getStatusTC: (userId: string) => void
-    updateStatusTC: (status: string) => void
-    savePhotoTC: (photoFile: File) => void
-    saveProfileTC: (profile: ProfileUpdateDataType) => void
-}
-
-interface TimerSnapshot {
-}
-
-type Snapshot = Readonly<TimerSnapshot>
-
-export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToPropsType
-
-type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
-
 class ProfileContainer extends React.Component<PropsType, {}> {
 
     refreshProfile() {
@@ -79,7 +51,6 @@ class ProfileContainer extends React.Component<PropsType, {}> {
     }
 }
 
-
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
@@ -98,3 +69,31 @@ export default compose<React.ComponentType>(
     withRouter,
     withAuthRedirect
 )(ProfileContainer)
+
+type PathParamsType = {
+    userId: string
+}
+
+type MapStatePropsType = {
+    profile: ProfileType | null
+    status: string
+    authorizedUserId: any
+    isAuth: boolean
+}
+
+type MapDispatchToPropsType = {
+    getUserProfileTC: (userId: string) => void
+    getStatusTC: (userId: string) => void
+    updateStatusTC: (status: string) => void
+    savePhotoTC: (photoFile: File) => void
+    saveProfileTC: (profile: ProfileUpdateDataType) => void
+}
+
+interface TimerSnapshot {
+}
+
+type Snapshot = Readonly<TimerSnapshot>
+
+export type ProfileContainerPropsType = MapStatePropsType & MapDispatchToPropsType
+
+type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType

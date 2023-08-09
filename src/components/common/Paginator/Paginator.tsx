@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styles from "./Paginator.module.css";
+import cn from "classnames"
 
 
 type PaginatorPropsType = {
@@ -25,7 +26,7 @@ export const Paginator = (props: PaginatorPropsType) => {
     let rightPortionNumber = portionNumber * props.portionSize
 
 
-    return <div className={styles.paginator}>
+    return <div className={cn(styles.paginator, styles.selectedPage)}>
         {portionNumber > 1 &&
             <button onClick={() => {
                 setPortionNumber(portionNumber - 1)
