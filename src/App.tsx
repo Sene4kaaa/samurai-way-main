@@ -19,11 +19,8 @@ import {withSuspense} from "./hoc/withSuspense";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
-type MapStatePropsType = {
-    initialized: boolean
-}
 
-class App extends React.Component<any> {
+class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
         this.props.initializeApp()
@@ -60,10 +57,20 @@ class App extends React.Component<any> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     initialized: state.app.initialized
 })
 
 export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
+
+type MapStateToPropsType = {
+    initialized: boolean
+}
+
+type MapDispatchToProps = {
+    initializeApp: () => void
+}
+
+export type AppPropsType = MapStateToPropsType & MapDispatchToProps
