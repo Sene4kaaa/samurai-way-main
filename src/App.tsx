@@ -42,7 +42,7 @@ class App extends React.Component<any> {
                     <Navbar/>
                     <div className={'app-wrapper-content'}>
                         <Switch>
-                            <Route path={'/'} render={withSuspense(ProfileContainer)}/>
+                            <Route path={'/'} exact render={withSuspense(ProfileContainer)}/>
                             <Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
                             <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
                             <Route path={'/news'} render={() => <News/>}/>
