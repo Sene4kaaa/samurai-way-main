@@ -42,13 +42,14 @@ class App extends React.Component<any> {
                     <Navbar/>
                     <div className={'app-wrapper-content'}>
                         <Switch>
-                        <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-                        <Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
-                        <Route path={'/news'} render={() => <News/>}/>
-                        <Route path={'/music'} render={() => <Music/>}/>
-                        <Route path={'/settings'} render={() => <Settings/>}/>
-                        <Route path={'/users'} render={() => <UsersContainer/>}/>
-                        <Route path={'/login'} render={() => <Login/>}/>
+                            <Route path={'/'} render={withSuspense(ProfileContainer)}/>
+                            <Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
+                            <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+                            <Route path={'/news'} render={() => <News/>}/>
+                            <Route path={'/music'} render={() => <Music/>}/>
+                            <Route path={'/settings'} render={() => <Settings/>}/>
+                            <Route path={'/users'} render={() => <UsersContainer/>}/>
+                            <Route path={'/login'} render={() => <Login/>}/>
                             <Route path={'*'} render={() => <div>404 NOT FOUND</div>}/>
                         </Switch>
                     </div>
