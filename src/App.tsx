@@ -42,8 +42,8 @@ class App extends React.Component<any> {
                     <Navbar/>
                     <div className={'app-wrapper-content'}>
                         <Switch>
-                            <Route exact path={'/'} render={() => <Redirect to={'/profile'}/>}/>
                             <Route exact path={'/samurai-way-main'} render={() => <Redirect to={'/profile'}/>}/>
+                            <Route exact path={'/'} render={() => <Redirect to={'/profile'}/>}/>
                             <Route path={'/dialogs'} render={withSuspense(DialogsContainer)}/>
                             <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
                             <Route path={'/news'} render={() => <News/>}/>
